@@ -10,10 +10,10 @@ import java.util.List;
 public class Koszyk {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long koszyk_id;
+    private long koszykId;
 
     @OneToOne
-    @JoinColumn(name = "klient_id")
+    @JoinColumn(name = "klientId")
     private Klient klient;
 
     @OneToMany (mappedBy = "koszyk" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
@@ -31,12 +31,12 @@ public class Koszyk {
 
     private boolean ukonczone;
 
-    public long getKoszyk_id() {
-        return koszyk_id;
+    public long getKoszykId() {
+        return koszykId;
     }
 
-    public void setKoszyk_id(long koszyk_id) {
-        this.koszyk_id = koszyk_id;
+    public void setKoszykId(long koszykId) {
+        this.koszykId = koszykId;
     }
 
     public Klient getKlient() {

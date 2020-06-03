@@ -10,18 +10,22 @@ import java.util.List;
 public class Procesor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long procesor_id;
+    private long procesorId;
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
     private String socket; // tu join z procesorem
-    private int ilosc_rdzeni;
+    private int iloscRdzeni;
     private float taktowanie;
+    @Column(name="tdp")
     private int TDP; // zliczane do wyboru zasilacza
-    private int maks_pamiec; // tego ram nie może przekroczyć
-    private String L1_Cache;
-    private String L2_Cache;
-    private String L3_Cache;
+    private int maksPamiec; // tego ram nie może przekroczyć
+    @Column(name="l1")
+    private String L1Cache;
+    @Column(name="l2")
+    private String L2Cache;
+    @Column(name="l3")
+    private String L3Cache;
     private String technologia;
 
     private float cena;
@@ -30,12 +34,12 @@ public class Procesor {
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getProcesor_id() {
-        return procesor_id;
+    public long getProcesorId() {
+        return procesorId;
     }
 
-    public void setProcesor_id(long procesor_id) {
-        this.procesor_id = procesor_id;
+    public void setProcesorId(long procesorId) {
+        this.procesorId = procesorId;
     }
 
     public String getObrazek() {
@@ -70,12 +74,12 @@ public class Procesor {
         this.socket = socket;
     }
 
-    public int getIlosc_rdzeni() {
-        return ilosc_rdzeni;
+    public int getIloscRdzeni() {
+        return iloscRdzeni;
     }
 
-    public void setIlosc_rdzeni(int ilosc_rdzeni) {
-        this.ilosc_rdzeni = ilosc_rdzeni;
+    public void setIloscRdzeni(int iloscRdzeni) {
+        this.iloscRdzeni = iloscRdzeni;
     }
 
     public float getTaktowanie() {
@@ -94,36 +98,36 @@ public class Procesor {
         this.TDP = TDP;
     }
 
-    public int getMaks_pamiec() {
-        return maks_pamiec;
+    public int getMaksPamiec() {
+        return maksPamiec;
     }
 
-    public void setMaks_pamiec(int maks_pamiec) {
-        this.maks_pamiec = maks_pamiec;
+    public void setMaksPamiec(int maksPamiec) {
+        this.maksPamiec = maksPamiec;
     }
 
-    public String getL1_Cache() {
-        return L1_Cache;
+    public String getL1Cache() {
+        return L1Cache;
     }
 
-    public void setL1_Cache(String l1_Cache) {
-        L1_Cache = l1_Cache;
+    public void setL1Cache(String L1Cache) {
+        L1Cache = L1Cache;
     }
 
-    public String getL2_Cache() {
-        return L2_Cache;
+    public String getL2Cache() {
+        return L2Cache;
     }
 
-    public void setL2_Cache(String l2_Cache) {
-        L2_Cache = l2_Cache;
+    public void setL2Cache(String L2Cache) {
+        L2Cache = L2Cache;
     }
 
-    public String getL3_Cache() {
-        return L3_Cache;
+    public String getL3Cache() {
+        return L3Cache;
     }
 
-    public void setL3_Cache(String l3_Cache) {
-        L3_Cache = l3_Cache;
+    public void setL3Cache(String L3Cache) {
+        L3Cache = L3Cache;
     }
 
     public String getTechnologia() {

@@ -6,35 +6,37 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="karta_graficzna")
-public class Karta_Graficzna {
+@Table(name="kartaGraficzna")
+public class KartaGraficzna {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long karta_graficzna_id;
+    private long kartaGraficznaId;
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
-    private int rozmiar_pamieci; // w MB
-    private String typ_pamieci;
-    private int taktowanie_procesora; //w MHZ
-    private int taktowanie_pamieci; //w MHZ
+    private int rozmiarPamieci; // w MB
+    private String typPamieci;
+    private int taktowanieProcesora; //w MHZ
+    private int taktowaniePamieci; //w MHZ
     private String interfejs; //PCIe x16 join do płyty
     private float dlugosc; //do obudowy w mm
+    @Column(name = "tdp")
     private int TDP; // w Watach
-    private String zasilanie_zewnetrzne;
+    private String zasilanieZewnetrzne;
 
 
     private float cena;
-    @OneToMany (mappedBy = "karta_graficzna" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
+    @OneToMany (mappedBy = "kartaGraficzna" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getKarta_graficzna_id() {
-        return karta_graficzna_id;
+    public long getKartaGraficznaId() {
+        return kartaGraficznaId;
     }
 
-    public void setKarta_graficzna_id(long karta_graficzna_id) {
-        this.karta_graficzna_id = karta_graficzna_id;
+
+    public void setKartaGraficznaId(long kartaGraficznaId) {
+        this.kartaGraficznaId = kartaGraficznaId;
     }
 
     public String getObrazek() {
@@ -61,36 +63,36 @@ public class Karta_Graficzna {
         this.nazwa = nazwa;
     }
 
-    public int getRozmiar_pamieci() {
-        return rozmiar_pamieci;
+    public int getRozmiarPamieci() {
+        return rozmiarPamieci;
     }
 
-    public void setRozmiar_pamieci(int rozmiar_pamieci) {
-        this.rozmiar_pamieci = rozmiar_pamieci;
+    public void setRozmiarPamieci(int rozmiarPamieci) {
+        this.rozmiarPamieci = rozmiarPamieci;
     }
 
-    public String getTyp_pamieci() {
-        return typ_pamieci;
+    public String getTypPamieci() {
+        return typPamieci;
     }
 
-    public void setTyp_pamieci(String typ_pamieci) {
-        this.typ_pamieci = typ_pamieci;
+    public void setTypPamieci(String typPamieci) {
+        this.typPamieci = typPamieci;
     }
 
-    public int getTaktowanie_procesora() {
-        return taktowanie_procesora;
+    public int getTaktowanieProcesora() {
+        return taktowanieProcesora;
     }
 
-    public void setTaktowanie_procesora(int taktowanie_procesora) {
-        this.taktowanie_procesora = taktowanie_procesora;
+    public void setTaktowanieProcesora(int taktowanieProcesora) {
+        this.taktowanieProcesora = taktowanieProcesora;
     }
 
-    public int getTaktowanie_pamieci() {
-        return taktowanie_pamieci;
+    public int getTaktowaniePamieci() {
+        return taktowaniePamieci;
     }
 
-    public void setTaktowanie_pamieci(int taktowanie_pamieci) {
-        this.taktowanie_pamieci = taktowanie_pamieci;
+    public void setTaktowaniePamieci(int taktowaniePamieci) {
+        this.taktowaniePamieci = taktowaniePamieci;
     }
 
     public String getInterfejs() {
@@ -117,12 +119,12 @@ public class Karta_Graficzna {
         this.TDP = TDP;
     }
 
-    public String getZasilanie_zewnetrzne() {
-        return zasilanie_zewnetrzne;
+    public String getZasilanieZewnetrzne() {
+        return zasilanieZewnetrzne;
     }
 
-    public void setZasilanie_zewnetrzne(String zasilanie_zewnetrzne) {
-        this.zasilanie_zewnetrzne = zasilanie_zewnetrzne;
+    public void setZasilanieZewnetrzne(String zasilanieZewnetrzne) {
+        this.zasilanieZewnetrzne = zasilanieZewnetrzne;
     }
 
     public float getCena() {

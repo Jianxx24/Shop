@@ -11,12 +11,12 @@ import java.util.List;
 public class Klient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long klient_id;
+    private long klientId;
     private String imie;
     private String nazwisko;
     private String adres;
     private String miasto;
-    private String nr_karta_kredytowa;
+    private String nrKartaKredytowa;
     private String username;
     private String password;
 
@@ -44,12 +44,12 @@ public class Klient {
         this.password = password;
     }
 
-    public long getKlient_id() {
-        return klient_id;
+    public long getKlientId() {
+        return klientId;
     }
 
-    public void setKlient_id(long klient_id) {
-        this.klient_id = klient_id;
+    public void setKlientId(long klientId) {
+        this.klientId = klientId;
     }
 
     public String getImie() {
@@ -84,12 +84,12 @@ public class Klient {
         this.miasto = miasto;
     }
 
-    public String getNr_karta_kredytowa() {
-        return nr_karta_kredytowa;
+    public String getnrKartaKredytowa() {
+        return nrKartaKredytowa;
     }
 
-    public void setNr_karta_kredytowa(String nr_karta_kredytowa) {
-        this.nr_karta_kredytowa = nr_karta_kredytowa;
+    public void setnrKartaKredytowa(String nrKartaKredytowa) {
+        this.nrKartaKredytowa = nrKartaKredytowa;
     }
 
     public List<Komputer> getKomputer() {

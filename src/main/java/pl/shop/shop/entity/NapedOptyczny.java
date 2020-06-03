@@ -6,30 +6,30 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="naped_optyczny")
-public class Naped_Optyczny {
+@Table(name="napedOptyczny")
+public class NapedOptyczny {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long naped_optyczny_id;
+    private long napedOptycznyId;
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
     private String interfejs;
-    private float typ_ksztaltu; //np 5.25 cala
+    private float typKsztaltu; //np 5.25 cala
     private int cache;
     private int szybkosc;
 
     private float cena;
-    @OneToMany (mappedBy = "naped_optyczny" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
+    @OneToMany (mappedBy = "napedOptyczny" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getNaped_optyczny_id() {
-        return naped_optyczny_id;
+    public long getnapedOptycznyId() {
+        return napedOptycznyId;
     }
 
-    public void setNaped_optyczny_id(long naped_optyczny_id) {
-        this.naped_optyczny_id = naped_optyczny_id;
+    public void setnapedOptycznyId(long napedOptyczny_id) {
+        this.napedOptycznyId = napedOptyczny_id;
     }
 
     public String getObrazek() {
@@ -64,12 +64,12 @@ public class Naped_Optyczny {
         this.interfejs = interfejs;
     }
 
-    public float getTyp_ksztaltu() {
-        return typ_ksztaltu;
+    public float gettypKsztaltu() {
+        return typKsztaltu;
     }
 
-    public void setTyp_ksztaltu(float typ_ksztaltu) {
-        this.typ_ksztaltu = typ_ksztaltu;
+    public void settypKsztaltu(float typKsztaltu) {
+        this.typKsztaltu = typKsztaltu;
     }
 
     public int getCache() {
