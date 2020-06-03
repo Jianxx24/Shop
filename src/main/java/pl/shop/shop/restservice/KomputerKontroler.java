@@ -30,11 +30,43 @@ public class KomputerKontroler {
         return ResponseEntity.ok(Komputer.get());
     }
 
+    @GetMapping(value = "/zlozone/{klientid}", produces = "application/json")
+    public ResponseEntity<List<Komputer>> getKomputerByKlientIdZlozone(@PathVariable Long klientid) {
+        List<Komputer> komputery = KomputerService.findByKlientIdAndZlozone(klientid, true);
+
+        return ResponseEntity.ok(komputery);
+    }
+
+    @GetMapping(value = "/twojkomputer/{klientid}", produces = "application/json")
+    public ResponseEntity<List<Komputer>> getKomputerForKlient(@PathVariable Long klientid) {
+        List<Komputer> komputery = KomputerService.findByKlientIdAndZlozone(klientid, true);
+        komputery.get(0);
+
+
+        return ResponseEntity.ok(komputery);
+    }
+
+
+
+    @GetMapping(value = "/niezlozone/{klientid}", produces = "application/json")
+    public ResponseEntity<List<Komputer>> getKomputerByKlientNiezlozone(@PathVariable Long klientid) {
+        List<Komputer> komputery = KomputerService.findByKlientIdAndZlozone(klientid, false);
+
+        return ResponseEntity.ok(komputery);
+    }
+
+
+
+
+
     @PostMapping("/add")
     public Komputer newKomputer(@RequestBody Komputer newKomputer) {
 
         return KomputerService.createKomputerEntry(newKomputer);
     }
+
+
+
 
 
 

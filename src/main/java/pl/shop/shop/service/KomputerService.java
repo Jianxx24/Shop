@@ -25,5 +25,6 @@ public class KomputerService {
     public Optional<Komputer> findById(Long KlientId){
         return KomputerRepository.findById(KlientId);
     }
+    public List<Komputer> findByKlientIdAndZlozone(Long KlientId, boolean zlozone){return KomputerRepository.findByKlientKlientIdAndZlozone(KlientId, zlozone);}
 
 }
