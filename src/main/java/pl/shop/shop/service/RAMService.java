@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class RAMService {
     @Autowired
-    RAMRepository ramRepository;
+    private RAMRepository ramRepository;
 
     public List<RAM> findByTyp(String type) {
         return ramRepository.findByTypPamieciIgnoreCase(type);
@@ -36,5 +36,9 @@ public class RAMService {
 
     public List<RAM> findByTypPamieciAndTaktowanieAndRozmiarPamieci(String type, int clock, int memory) {
         return ramRepository.findByTypPamieciIgnoreCaseAndTaktowanieAndRozmiarPamieci(type, clock, memory);
+    }
+
+    public RAM createRAMEntry(RAM newRAM) {
+        return ramRepository.save(newRAM);
     }
 }
