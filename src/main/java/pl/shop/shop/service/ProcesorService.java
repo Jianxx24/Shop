@@ -22,4 +22,7 @@ public class ProcesorService {
 
     public List<Procesor> findByIloscRdzeni(int cores) {return (List<Procesor>) procesorRepository.findByIloscRdzeni(cores);}
 
+    public Procesor createProcesorEntry(Procesor newProcesor) {
+        return procesorRepository.save(newProcesor);
+    }
 }

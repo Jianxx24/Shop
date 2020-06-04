@@ -2,17 +2,15 @@ package pl.shop.shop.restservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import pl.shop.shop.entity.RAM;
 import pl.shop.shop.service.RAMService;
 
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/ram")
 public class RAMKontroler {
     @Autowired
@@ -40,5 +38,10 @@ public class RAMKontroler {
     @GetMapping(value="/type/{type}/clock/{clock}/memory/{memory}", produces="application/json")
     public ResponseEntity<List<RAM>> findByTypPamieciAndTaktowanieAndPamiec(@PathVariable String type, @PathVariable int clock, @PathVariable int memory){
         return ResponseEntity.ok((List<RAM>) ramService.findByTypPamieciAndTaktowanieAndRozmiarPamieci(type,clock, memory));
+    }
+    @PostMapping("/add")
+    public RAM newRAM(@RequestBody RAM newRAM) {
+
+        return ramService.createRAMEntry(newRAM);
     }
 }

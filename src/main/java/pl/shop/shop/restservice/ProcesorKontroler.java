@@ -2,16 +2,14 @@ package pl.shop.shop.restservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import pl.shop.shop.entity.Procesor;
 import pl.shop.shop.service.ProcesorService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/cpu")
 public class ProcesorKontroler {
     @Autowired
@@ -32,4 +30,9 @@ public class ProcesorKontroler {
     @GetMapping(value="/cores/{cores}", produces="application/json")
     public ResponseEntity<List<Procesor>> getAllProcesorByCores(@PathVariable int cores){
         return ResponseEntity.ok(procesorService.findByIloscRdzeni(cores));}
+    @PostMapping("/add")
+    public Procesor newProcesor(@RequestBody Procesor newProcesor) {
+
+        return procesorService.createProcesorEntry(newProcesor);
+    }
 }
