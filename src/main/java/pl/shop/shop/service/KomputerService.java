@@ -5,9 +5,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import pl.shop.shop.entity.Komputer;
+import pl.shop.shop.repository.KlientRepository;
 import pl.shop.shop.repository.KomputerRepository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -15,10 +17,10 @@ import java.util.Optional;
 public class KomputerService {
     @Autowired
     private KomputerRepository KomputerRepository;
+    private KlientRepository klientRepository;
     public Komputer createKomputerEntry(Komputer newEntry){
         return KomputerRepository.save(newEntry);
     }
-
     public List<Komputer> findAll(){
         return (List<Komputer>) KomputerRepository.findAll();
     }
@@ -28,3 +30,4 @@ public class KomputerService {
     public List<Komputer> findByKlientIdAndZlozone(Long KlientId, boolean zlozone){return KomputerRepository.findByKlientKlientIdAndZlozone(KlientId, zlozone);}
 
 }
+

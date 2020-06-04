@@ -5,10 +5,105 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-Podzespoły twojego komputera
+<p>Podzespoły twojego komputera</p>
+
+<table>
+    <th:block th:each="komputer : ${komputer}">
+
+        <tr th:if="${komputer.plytaGlowna == null}" >
+            <td>
+                <p>Płyta Główna:</p>
+            </td>
+            <td>
+                <p>Brak płyty głównej</p>
+            </td>
+
+            <td>
+                <p>Button Dodaj</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.plytaGlowna == null}">
+            <td>
+                <p>Płyta Główna:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.plytaGlowna.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.plytaGlowna.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.plytaGlowna.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usunplyte}" th:object="${komputer}" method="POST">
+                    <input id="plyta" th:field="${komputer.komputerId}" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+        <br>
 
 
 
+        <tr th:if="${komputer.dysk == null}" >
+            <td>
+                <p>Dysk:</p>
+            </td>
+
+
+            <td>
+                <p>Dodaj Dysk</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.dysk == null}">
+            <td>
+                <p>Dysk:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.dysk.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.dysk.producent}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.dysk.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usundysk}" th:object="${komputer}" method="POST">
+                    <input id="komputerId" th:field="${komputer.komputerId}" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+
+
+
+
+
+
+        <form th:action="@{/komputer/dodajdokoszyka}" th:object="${komputer}" method="POST">
+            <input id="komputer_id" th:field="${komputer.komputerId}" type="hidden"/>
+            <input type="submit" value="Dodaj do koszyka" class="btn btn-red" />
+        </form>
+
+    </th:block>
+
+
+</table>
 
 </body>
 </html>
