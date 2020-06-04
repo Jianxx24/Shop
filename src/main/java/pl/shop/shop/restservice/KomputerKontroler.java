@@ -11,6 +11,7 @@ import pl.shop.shop.entity.Komputer;
 import pl.shop.shop.entity.RAM;
 import pl.shop.shop.service.KlientService;
 import pl.shop.shop.service.KomputerService;
+import pl.shop.shop.service.RAMService;
 
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,9 @@ public class KomputerKontroler {
     private KomputerService KomputerService;
     @Autowired
     private KlientService klientService;
+    @Autowired
+    private RAMService ramService;
+
 
 
     @GetMapping(value = "/rest/all", produces = "application/json")
@@ -86,18 +90,72 @@ public class KomputerKontroler {
         return "index";
     }
 
-    @RequestMapping(value = "/skladanie/usundysk", method = RequestMethod.POST)
-    public String usunDysk(@RequestParam(value = "komputerId") Long komputerId, Model model){
+    @RequestMapping(value = "/skladanie/usun", method = RequestMethod.POST)
+    public String usunCzesci(Model model, HttpSession session, @RequestParam(name = "delete") String delete){
+        Long klientId = (Long) session.getAttribute("klientId");
 
-       Komputer komputer = KomputerService.findById(komputerId).get();
-       komputer.setDysk(null);
-       KomputerService.createKomputerEntry(komputer);
+       Komputer komputer = KomputerService.findByKlientIdAndZlozone(klientId, false).get(0);
+
+        if(delete.equals("dysk"))
+        {
+            komputer.setDysk(null);
+        }
+        if(delete.equals("plyta_glowna"))
+        {
+            komputer.setPlytaGlowna(null);
+        }
+        if(delete.equals("karta_graficzna"))
+        {
+            komputer.setKartaGraficzna(null);
+        }
+        if(delete.equals("procesor"))
+        {
+            komputer.setProcesor(null);
+        }
+        if(delete.equals("naped_optyczny"))
+        {
+            komputer.setNapedOptyczny(null);
+        }
+        if(delete.equals("zasilacz"))
+        {
+            komputer.setZasilacz(null);
+        }
+        if(delete.equals("obudowa"))
+        {
+            komputer.setObudowa(null);
+        }
+
+        KomputerService.createKomputerEntry(komputer);
+
 
         model.addAttribute("komputer", komputer);
         return "redirect:/komputer/skladanie";
     }
 
+    @RequestMapping(value = "/skladanie/usunram", method = RequestMethod.POST)
+    public String usunRam(Model model, HttpSession session, @RequestParam(name = "delete_ram") String delete){
+        Long klientId = (Long) session.getAttribute("klientId");
 
+        Komputer komputer = KomputerService.findByKlientIdAndZlozone(klientId, false).get(0);
+        List<RAM> ram = komputer.getRam();
+
+        if(delete.equals("0"))
+        {
+            ram.remove(0);
+        }
+
+
+
+
+
+
+        komputer.setRam(ram);
+        KomputerService.createKomputerEntry(komputer);
+
+
+        model.addAttribute("komputer", komputer);
+        return "redirect:/komputer/skladanie";
+    }
 
 
 

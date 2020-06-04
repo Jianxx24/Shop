@@ -10,16 +10,53 @@
 <table>
     <th:block th:each="komputer : ${komputer}">
 
+        <tr th:if="${komputer.procesor == null}" >
+            <td>
+                <p>Procesor:</p>
+            </td>
+
+
+            <td>
+                <p>Dodaj Procesor</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.procesor == null}">
+            <td>
+                <p>Procesor:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.procesor.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.procesor.producent}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.procesor.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="procesor" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+
+
+
+
         <tr th:if="${komputer.plytaGlowna == null}" >
             <td>
                 <p>Płyta Główna:</p>
             </td>
-            <td>
-                <p>Brak płyty głównej</p>
-            </td>
 
             <td>
-                <p>Button Dodaj</p>
+                <p>Dodaj Płytę</p>
             </td>
         </tr>
 
@@ -40,8 +77,57 @@
                 <p th:text="${komputer.plytaGlowna.nazwa}"></p>
             </td>
             <td>
-                <form th:action="@{/komputer/skladanie/usunplyte}" th:object="${komputer}" method="POST">
-                    <input id="plyta" th:field="${komputer.komputerId}" type="hidden"/>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="plyta" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <tr th:each="ram : ${ram}">
+                <td>RAM: </td>
+                <td>   <img th:src="${komputer.kartaGraficzna.obrazek}" /></td>
+                <td>  <p th:text="${ram.producent}"></p></td>
+                <td>    <p th:text="${ram.nazwa}"></p></td>
+
+            </tr>
+        </tr>
+
+
+
+
+        <tr th:if="${komputer.kartaGraficzna == null}" >
+            <td>
+                <p>Karta Graficzna:</p>
+            </td>
+
+            <td>
+                <p>Dodaj Kartę Graficzną</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.kartaGraficzna == null}">
+            <td>
+                <p>Karta Graficzna:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.kartaGraficzna.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.kartaGraficzna.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.kartaGraficzna.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="karta_graficzna" type="hidden"/>
                     <input type="submit" value="Usuń" class="btn btn-red" />
                 </form>
             </td>
@@ -49,7 +135,119 @@
         </tr>
 
 
-        <br>
+        <tr th:if="${komputer.zasilacz == null}" >
+            <td>
+                <p>Zasilacz:</p>
+            </td>
+
+            <td>
+                <p>Dodaj Zasilacz</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.zasilacz == null}">
+            <td>
+                <p>Zasilacz:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.zasilacz.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.zasilacz.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.zasilacz.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="zasilacz" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${komputer.napedOptyczny == null}" >
+            <td>
+                <p>Napęd optyczny:</p>
+            </td>
+
+            <td>
+                <p>Dodaj Napęd optyczny</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.napedOptyczny == null}">
+            <td>
+                <p>Napęd optyczny:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.napedOptyczny.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.napedOptyczny.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.napedOptyczny.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="naped_optyczny" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${komputer.obudowa == null}" >
+            <td>
+                <p>Obudowa:</p>
+            </td>
+
+            <td>
+                <p>Dodaj obudowę</p>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.obudowa == null}">
+            <td>
+                <p>Obudowa:</p>
+            </td>
+            <td>
+                <img th:src="${komputer.obudowa.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.obudowa.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.obudowa.nazwa}"></p>
+            </td>
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="obudowa" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+
+
+
+
+
 
 
 
@@ -80,8 +278,8 @@
                 <p th:text="${komputer.dysk.nazwa}"></p>
             </td>
             <td>
-                <form th:action="@{/komputer/skladanie/usundysk}" th:object="${komputer}" method="POST">
-                    <input id="komputerId" th:field="${komputer.komputerId}" type="hidden"/>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="dysk" type="hidden"/>
                     <input type="submit" value="Usuń" class="btn btn-red" />
                 </form>
             </td>
@@ -95,10 +293,7 @@
 
 
 
-        <form th:action="@{/komputer/dodajdokoszyka}" th:object="${komputer}" method="POST">
-            <input id="komputer_id" th:field="${komputer.komputerId}" type="hidden"/>
-            <input type="submit" value="Dodaj do koszyka" class="btn btn-red" />
-        </form>
+
 
     </th:block>
 
