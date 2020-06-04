@@ -17,4 +17,9 @@ public class ProcesorService {
     public List<Procesor> findAll() {
         return (List<Procesor>)procesorRepository.findAll();
     }
+    public List<Procesor> findBySocket(String socket) {return (List<Procesor>) procesorRepository.findBySocketIgnoreCase(socket);}
+    public List<Procesor> findByProducent(String producent) {return (List<Procesor>) procesorRepository.findByProducentIgnoreCase(producent);}
+
+    public List<Procesor> findByIloscRdzeni(int cores) {return (List<Procesor>) procesorRepository.findByIloscRdzeni(cores);}
+
 }
