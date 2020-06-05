@@ -20,7 +20,6 @@ public class Koszyk {
     @JsonBackReference
     private List<Komputer> komputer;
 
-
     public List<Komputer> getKomputer() {
         return komputer;
     }

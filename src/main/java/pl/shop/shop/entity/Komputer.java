@@ -62,10 +62,12 @@ public class Komputer {
     public void obliczCene(){
         cena=0;
         for (int i=0; i<ram.size(); i++){
-            cena += ram.get(i).getCena();
+            if(ram.get(i) != null) {
+                cena += ram.get(i).getCena();
+            }
+
         }
         if(plytaGlowna != null) cena+=plytaGlowna.getCena();
-
         if(procesor != null) cena+=procesor.getCena();
         if(zasilacz != null) cena+=zasilacz.getCena();
         if(dysk != null) cena+=dysk.getCena();

@@ -64,11 +64,9 @@ public class KomputerKontroler {
         if (klientid != null) {
             List<Komputer> komputery = KomputerService.findByKlientIdAndZlozone(klientid, false);
             Komputer komputer;
-
+            List<RAM> ram;
             if (!komputery.isEmpty()) {
                 komputer = komputery.get(0);
-
-                List<RAM> ram = komputer.getRam();
 
 
             } else {
@@ -81,7 +79,7 @@ public class KomputerKontroler {
 
 
             }
-            List<RAM> ram = komputer.getRam();
+            ram = komputer.getRam();
             komputer.obliczCene();
             model.addAttribute("komputer", komputer);
             model.addAttribute("ram", ram);

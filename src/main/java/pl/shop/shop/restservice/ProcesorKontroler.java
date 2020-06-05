@@ -47,7 +47,7 @@ public class ProcesorKontroler {
 
 
     @GetMapping("/list")
-    public String RAMlist(Model model) {
+    public String CPUlist(Model model) {
         List<Procesor> procesor = procesorService.findAll();
         model.addAttribute("procesor", procesor);
         return "procesor";
