@@ -36,7 +36,16 @@ VALUES (0, '/images/procesory/procesor0.jpg', 'AMD', 'Ryzen 5 3600', 'AM4', 6, 3
 
 
 INSERT INTO ram(ram_id, obrazek, producent, nazwa, rozmiar_pamieci, taktowanie, typ_pamieci, cas, napiecie, timingi, cena)
-VALUES (0, '/images/ran/ram0.jpg',  'Corsair', 'Vengeance LPX', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 250.0);
+VALUES (0, '/images/ran/ram0.jpg',  'Corsair', 'Vengeance LPX', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 250.0),
+VALUES (1, '/images/ran/ram1.jpg',  'G.Skill', 'Ripjaws V', 16, 3600, 'DDR4', 16, 1.35, '16-19-19-39', 349.0),
+VALUES (2, '/images/ran/ram2.jpg',  'Crucial', 'Ballistix', 8, 2400, 'DDR4', 16, 1.35, '16-16-16-39', 179.0),
+VALUES (3, '/images/ran/ram3.jpg',  'G.Skill', 'Aegis', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-38', 339.0),
+VALUES (4, '/images/ran/ram4.jpg',  'G.Skill', 'Trident Z RGB', 32, 3600, 'DDR4', 16, 1.35, '16-19-19-39', 1099.0),
+VALUES (5, '/images/ran/ram5.jpg',  'Corsair', 'Vengeance LPX', 16, 3000, 'DDR4', 16, 1.35, '16-20-20-38', 349.0),
+VALUES (6, '/images/ran/ram6.jpg',  'Kingston', 'HyperX Fury', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 349.0),
+VALUES (7, '/images/ran/ram7.jpg',  'Kingston', 'HyperX Fury RGB', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 399.0),
+VALUES (8, '/images/ran/ram8.jpg',  'Kingston', 'HpyerX Predator RGB', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 459.0),
+VALUES (9, '/images/ran/ram9.jpg',  'Crucial', 'Ballistix', 16, 2400, 'DDR4', 16, 1.35, '16-16-16-39', 439.0);
 
 INSERT INTO zasilacz(zasilacz_id,obrazek, producent, nazwa, typ_ksztaltu, moc, eps, pcie_plus, sata, molex, cena)
 VALUES (0, '/images/zasilacze/zasilacz0.jpg', 'Corsair', 'RM2019', 'ATX', 750, 2, 6, 10, 4, 500.0);
