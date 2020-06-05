@@ -19,12 +19,14 @@ public class DyskService {
         return DyskRepository.save(newEntry);
     }
 
+    public Optional<Dysk> findById(Long DyskId){
+        return DyskRepository.findById(DyskId);
+    }
+
     public List<Dysk> findAll(){
         return (List<Dysk>) DyskRepository.findAll();
     }
 
-    public Optional<Dysk> findById(Long DyskId){
-        return DyskRepository.findById(DyskId);
-    }
+
 
 }

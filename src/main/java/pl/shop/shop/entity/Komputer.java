@@ -57,6 +57,27 @@ public class Komputer {
     @JoinColumn(name ="obudowa_id", nullable = true)
     private Obudowa obudowa;
 
+    private float cena=0;
+
+    public void obliczCene(){
+        cena=0;
+        for (int i=0; i<ram.size(); i++){
+            cena += ram.get(i).getCena();
+        }
+        if(plytaGlowna != null) cena+=plytaGlowna.getCena();
+
+        if(procesor != null) cena+=procesor.getCena();
+        if(zasilacz != null) cena+=zasilacz.getCena();
+        if(dysk != null) cena+=dysk.getCena();
+        if(kartaGraficzna != null) cena+=kartaGraficzna.getCena();
+        if(napedOptyczny != null) cena+=napedOptyczny.getCena();
+        if(obudowa != null) cena+=obudowa.getCena();
+
+
+    }
+
+
+
     public long getKomputerId() {
         return komputerId;
     }
@@ -151,5 +172,13 @@ public class Komputer {
 
     public void setObudowa(Obudowa obudowa) {
         this.obudowa = obudowa;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public void setCena(float cena) {
+        this.cena = cena;
     }
 }

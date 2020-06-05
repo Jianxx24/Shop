@@ -82,12 +82,13 @@ public class KomputerKontroler {
 
             }
             List<RAM> ram = komputer.getRam();
+            komputer.obliczCene();
             model.addAttribute("komputer", komputer);
             model.addAttribute("ram", ram);
             return "komputer";
 
         }
-        return "index";
+        return "logowanie";
     }
 
     @RequestMapping(value = "/skladanie/usun", method = RequestMethod.POST)
@@ -125,6 +126,7 @@ public class KomputerKontroler {
             komputer.setObudowa(null);
         }
 
+        komputer.obliczCene();
         KomputerService.createKomputerEntry(komputer);
 
 
@@ -139,15 +141,7 @@ public class KomputerKontroler {
         Komputer komputer = KomputerService.findByKlientIdAndZlozone(klientId, false).get(0);
         List<RAM> ram = komputer.getRam();
 
-        if(delete.equals("0"))
-        {
-            ram.remove(0);
-        }
-
-
-
-
-
+        ram.remove(Integer.parseInt(delete));
 
         komputer.setRam(ram);
         KomputerService.createKomputerEntry(komputer);
@@ -163,7 +157,7 @@ public class KomputerKontroler {
 
 
 
-    @PostMapping("/add")
+    @PostMapping("/rest/add")
     public Komputer newKomputer(@RequestBody Komputer newKomputer) {
 
         return KomputerService.createKomputerEntry(newKomputer);

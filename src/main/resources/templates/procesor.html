@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Procesor</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Socket</th>
+    <th>Ilość Rdzeni</th>
+    <th>Taktowanie</th>
+    <th>TDP</th>
+    <th>Max Pamięć</th>
+    <th>L1 Cache</th>
+    <th>L2 Cache</th>
+    <th>L3 Cache</th>
+    <th>Technologia</th>
+    <th>Cena</th>
+    <tr th:each="procesor : ${procesor}">
+        <td>
+            <img width="100px" height="100px" th:src="${procesor.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${procesor.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${procesor.nazwa}"></p>
+        </td>
+        <td>
+            <p th:text="${procesor.socket}"></p>
+        </td>
+        <td>
+            <p th:text="${procesor.iloscRdzeni}"></p>
+        </td>
+        <td>
+            <p th:text="${procesor.taktowanie} + ' GHZ'"></p>
+        </td>
+
+        <td>
+            <p th:text="${procesor.TDP} + ' W'"></p>
+        </td>
+
+
+        <td>
+            <p th:text="${procesor.maksPamiec}+ ' GB'"></p>
+        </td>
+
+        <td>
+            <p th:text="${procesor.L1Cache}"></p>
+        </td>
+
+        <td>
+            <p th:text="${procesor.L2Cache}"></p>
+        </td>
+
+        <td>
+            <p th:text="${procesor.L3Cache}"></p>
+        </td>
+
+        <td>
+            <p th:text="${procesor.technologia}"></p>
+        </td>
+
+        <td>
+            <p th:text="${procesor.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/cpu/dodaj}"  method="POST">
+                <input name="procesorId" th:value="${procesor.procesorId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

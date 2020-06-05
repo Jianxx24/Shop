@@ -7,6 +7,7 @@ import pl.shop.shop.entity.KartaGraficzna;
 import pl.shop.shop.repository.KartaGraficznaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -17,6 +18,7 @@ public class KartaGraficznaService {
     public List<KartaGraficzna> findAll() {
         return (List<KartaGraficzna>) kartaGraficznaRepository.findAll();
     }
+    public Optional<KartaGraficzna> findById(Long KartaGraficznaId) {return kartaGraficznaRepository.findById(KartaGraficznaId);}
 
     public List<KartaGraficzna> findByMemory(String memory) {
         return kartaGraficznaRepository.findByTypPamieciIgnoreCase(memory);

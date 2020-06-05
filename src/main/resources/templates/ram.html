@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RAM</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+RAM:
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Typ</th>
+    <th>Taktowanie</th>
+    <th>Rozmiar</th>
+    <th>Napięcie</th>
+    <th>Timingi</th>
+    <th>Cena</th>
+    <tr th:each="ram : ${ram}">
+        <td>
+            <img width="100px" height="100px" th:src="${ram.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${ram.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${ram.nazwa}"></p>
+        </td>
+        <td>
+            <p th:text="${ram.typPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${ram.taktowanie}"></p>
+        </td>
+        <td>
+            <p th:text="${ram.rozmiarPamieci}"></p>
+        </td>
+
+        <td>
+            <p th:text="${ram.napiecie}"></p>
+        </td>
+
+
+        <td>
+            <p th:text="${ram.timingi}"></p>
+        </td>
+
+        <td>
+            <p th:text="${ram.cena}+' zł'"></p>
+        </td>
+
+        <td>
+            <form th:action="@{/ram/dodaj}"  method="POST">
+                <input name="ram_Id" th:value="${ram.ramId}" type="hidden"/>
+                <input type="submit" value="Dodaj" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

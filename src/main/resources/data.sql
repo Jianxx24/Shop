@@ -18,7 +18,7 @@ VALUES (0, '/images/dyski/dysk0.jpg', 'Seagate', 'Barracuda Compute 2', 2048, '7
        (1, '/images/dyski/dysk1.jpg', 'Samsung', 'Evo 970'            , 512 , 'SSD' , 512, 'M.2-2280' , 'M.2'  , 600.0);
 
 INSERT INTO karta_graficzna(karta_graficzna_id, obrazek, producent, nazwa, rozmiar_pamieci, typ_pamieci, taktowanie_procesora, taktowanie_pamieci, interfejs, dlugosc, tdp, zasilanie_zewnetrzne, cena)
-VALUES (0, '/images/karty_graficzne/karta0.jpg', 'Gigabyte', 'GeForce RTX 2070 SUPER', 8196, 'GDDR6', 1605, 14000, 'PCIe x16', 280.35, 215, '1 PCIe 8-pin + 1 PCIe 6-pin' , 2299.99);
+VALUES (0, '/images/karty_graficzne/karta0.jpg', 'Gigabyte', 'GeForce RTX 2070 SUPER', 8196, 'GDDR6', 1605, 14000, 'PCIe x16', 280.35, 215, '1 PCIe 8-pin + 1 PCIe 6-pin' , 2299);
 
 
 INSERT INTO naped_optyczny(naped_optyczny_id, obrazek, producent, nazwa, interfejs, typ_ksztaltu, cache, szybkosc, cena)
@@ -28,7 +28,7 @@ INSERT INTO obudowa(obudowa_id, obrazek, producent, nazwa, kolor, typ_ksztaltu, 
 VALUES (0, '/images/obudowy/obudowa0.jpg', 'NZXT', 'H510', 'CZARNY', 'ATX Mid Tower', 381.0, 2, 2, 400.0);
 
 INSERT INTO plyta_glowna(plyta_glowna_id, obrazek, producent, nazwa, socket, typ_ksztaltu, chipset, typ_pamieci, sloty_pamieci, max_obslugiwana_ilosc_pamieci, obslugiwane_szybkosci_pamieci,sloty_pcie_x16, sloty_pcie_x8, sloty_pcie_x4, sloty_pcie_x1, sloty_msata, sloty_sata, sloty_m2, sloty_usb2, sloty_usb3, cena)
-VALUES (0, '/images/plyty_glowne/plyta0.jpg', 'ASRock', 'B450M PRO4', 'AM4', 'Micro ATX', 'AMD B450', 'DDR4', 4, 64, '2133,2400,2666,2933,3200', 2,0,0,1, 0, 4, 2242, 2, 0, 629.99);
+VALUES (0, '/images/plyty_glowne/plyta0.jpg', 'ASRock', 'B450M PRO4', 'AM4', 'Micro ATX', 'AMD B450', 'DDR4', 4, 64, '2133,2400,2666,2933,3200', 2,0,0,1, 0, 4, 2242, 2, 0, 629);
 
 
 INSERT INTO procesor(procesor_id, obrazek, producent, nazwa, socket, ilosc_rdzeni, taktowanie, tdp, maks_pamiec, l1, l2, l3, technologia, cena)
@@ -37,38 +37,39 @@ VALUES (0, '/images/procesory/procesor0.jpg', 'AMD', 'Ryzen 5 3600', 'AM4', 6, 3
 
 INSERT INTO ram(ram_id, obrazek, producent, nazwa, rozmiar_pamieci, taktowanie, typ_pamieci, cas, napiecie, timingi, cena)
 VALUES (0, '/images/ran/ram0.jpg',  'Corsair', 'Vengeance LPX', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 250.0),
-VALUES (1, '/images/ran/ram1.jpg',  'G.Skill', 'Ripjaws V', 16, 3600, 'DDR4', 16, 1.35, '16-19-19-39', 349.0),
-VALUES (2, '/images/ran/ram2.jpg',  'Crucial', 'Ballistix', 8, 2400, 'DDR4', 16, 1.35, '16-16-16-39', 179.0),
-VALUES (3, '/images/ran/ram3.jpg',  'G.Skill', 'Aegis', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-38', 339.0),
-VALUES (4, '/images/ran/ram4.jpg',  'G.Skill', 'Trident Z RGB', 32, 3600, 'DDR4', 16, 1.35, '16-19-19-39', 1099.0),
-VALUES (5, '/images/ran/ram5.jpg',  'Corsair', 'Vengeance LPX', 16, 3000, 'DDR4', 16, 1.35, '16-20-20-38', 349.0),
-VALUES (6, '/images/ran/ram6.jpg',  'Kingston', 'HyperX Fury', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 349.0),
-VALUES (7, '/images/ran/ram7.jpg',  'Kingston', 'HyperX Fury RGB', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 399.0),
-VALUES (8, '/images/ran/ram8.jpg',  'Kingston', 'HpyerX Predator RGB', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 459.0),
-VALUES (9, '/images/ran/ram9.jpg',  'Crucial', 'Ballistix', 16, 2400, 'DDR4', 16, 1.35, '16-16-16-39', 439.0);
+ (1, '/images/ran/ram1.jpg',  'G.Skill', 'Ripjaws V', 16, 3600, 'DDR4', 16, 1.35, '16-19-19-39', 349.0),
+ (2, '/images/ran/ram2.jpg',  'Crucial', 'Ballistix', 8, 2400, 'DDR4', 16, 1.35, '16-16-16-39', 179.0),
+ (3, '/images/ran/ram3.jpg',  'G.Skill', 'Aegis', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-38', 339.0),
+ (4, '/images/ran/ram4.jpg',  'G.Skill', 'Trident Z RGB', 32, 3600, 'DDR4', 16, 1.35, '16-19-19-39', 1099.0),
+ (5, '/images/ran/ram5.jpg',  'Corsair', 'Vengeance LPX', 16, 3000, 'DDR4', 16, 1.35, '16-20-20-38', 349.0),
+ (6, '/images/ran/ram6.jpg',  'Kingston', 'HyperX Fury', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 349.0),
+ (7, '/images/ran/ram7.jpg',  'Kingston', 'HyperX Fury RGB', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 399.0),
+ (8, '/images/ran/ram8.jpg',  'Kingston', 'HpyerX Predator RGB', 16, 3200, 'DDR4', 16, 1.35, '16-18-18-36', 459.0),
+ (9, '/images/ran/ram9.jpg',  'Crucial', 'Ballistix', 16, 2400, 'DDR4', 16, 1.35, '16-16-16-39', 439.0);
 
 INSERT INTO zasilacz(zasilacz_id,obrazek, producent, nazwa, typ_ksztaltu, moc, eps, pcie_plus, sata, molex, cena)
 VALUES (0, '/images/zasilacze/zasilacz0.jpg', 'Corsair', 'RM2019', 'ATX', 750, 2, 6, 10, 4, 500.0);
 
 
 
-INSERT INTO komputer(komputer_id, zlozone, klient_id, koszyk_id, plyta_glowna_id, procesor_id, zasilacz_id,  dysk_id, karta_graficzna_id, naped_optyczny_id, obudowa_id ) VALUES
-(0, false,0, null, 0,0,0,0,0,0,0);
+INSERT INTO komputer(komputer_id, zlozone, klient_id, koszyk_id, plyta_glowna_id, procesor_id, zasilacz_id,  dysk_id, karta_graficzna_id, naped_optyczny_id, obudowa_id, cena) VALUES
+(0, false,0, null, 0,0,0,0,0,0,0,0);
 
 INSERT INTO komputer_ram(ram_id, komputer_id)
 VALUES (0,0),
         (0,0);
 
-INSERT INTO komputer(komputer_id, zlozone, klient_id, koszyk_id, plyta_glowna_id, procesor_id, zasilacz_id,  dysk_id, karta_graficzna_id, naped_optyczny_id, obudowa_id ) VALUES
-(1, true,1, 1, 0,0,0,0,0,0,0);
+INSERT INTO komputer(komputer_id, zlozone, klient_id, koszyk_id, plyta_glowna_id, procesor_id, zasilacz_id,  dysk_id, karta_graficzna_id, naped_optyczny_id, obudowa_id, cena) VALUES
+(1, false,1, null, 0,0,0,0,0,0,0,0);
 
 
 INSERT INTO komputer_ram(ram_id, komputer_id)
 VALUES (0,1),
-        (0,1);
-
-INSERT INTO komputer(komputer_id, zlozone, klient_id, koszyk_id, plyta_glowna_id, procesor_id, zasilacz_id,  dysk_id, karta_graficzna_id, naped_optyczny_id, obudowa_id ) VALUES
-(2, true,1, 1, 0,0,0,0,0,0,0);
+        (1,1),
+        (2,1),
+        (3,1);
+INSERT INTO komputer(komputer_id, zlozone, klient_id, koszyk_id, plyta_glowna_id, procesor_id, zasilacz_id,  dysk_id, karta_graficzna_id, naped_optyczny_id, obudowa_id, cena) VALUES
+(2, true,1, 1, 0,0,0,0,0,0,0,0);
 
 
 INSERT INTO komputer_ram(ram_id, komputer_id)

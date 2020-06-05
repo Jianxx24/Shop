@@ -13,11 +13,18 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 public class HomeKontroler {
 
+    @GetMapping("/index")
+    public String getIndex(Model model, HttpSession session){
+
+        return "index";
+    }
+
+
     @GetMapping("/sesja")
     public String getSesja(Model model, HttpSession session){
 
         model.addAttribute("sesja_klientId", session.getAttribute("klientId"));
-        return "index";
+        return "sesja";
     }
 
 
@@ -27,7 +34,7 @@ public class HomeKontroler {
     session.setAttribute("klientId", klientId);
 
     model.addAttribute("sesja_klientId", session.getAttribute("klientId"));
-    return "index";
+    return "sesja";
 }
 
 

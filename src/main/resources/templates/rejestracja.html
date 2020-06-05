@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-
+<th:block th:include="menu.html">
+</th:block>
 <h1>Form</h1>
 <form action="#" th:action="@{/rejestracja}" th:object="${klient}" method="post">
     <p>Nazwa użytkownika: <input type="text" th:field="*{username}" /></p>

@@ -7,6 +7,7 @@ import pl.shop.shop.entity.Procesor;
 import pl.shop.shop.repository.ProcesorRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -17,6 +18,7 @@ public class ProcesorService {
     public List<Procesor> findAll() {
         return (List<Procesor>)procesorRepository.findAll();
     }
+    public Optional<Procesor> findById(Long procesorId) {return procesorRepository.findById(procesorId);}
     public List<Procesor> findBySocket(String socket) {return (List<Procesor>) procesorRepository.findBySocketIgnoreCase(socket);}
     public List<Procesor> findByProducent(String producent) {return (List<Procesor>) procesorRepository.findByProducentIgnoreCase(producent);}
 

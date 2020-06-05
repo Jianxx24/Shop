@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import pl.shop.shop.entity.RAM;
 import pl.shop.shop.repository.RAMRepository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -17,6 +19,7 @@ public class RAMService {
     public List<RAM> findByTyp(String type) {
         return ramRepository.findByTypPamieciIgnoreCase(type);
     }
+    public Optional<RAM> findById(Long ramId) {return ramRepository.findById(ramId);}
 
     public List<RAM> findAll() {
         return (List<RAM>) ramRepository.findAll();
