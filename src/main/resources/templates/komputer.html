@@ -112,7 +112,7 @@
 
             <tr th:each="ram : ${ram}">
                 <td><p th:text="'RAM' + ${ramStat.index}"></p> </td>
-                <td>   <img th:src="${komputer.kartaGraficzna.obrazek}" /></td>
+                <td>   <img th:src="${ram.obrazek}" /></td>
                 <td>  <p th:text="${ram.producent}"></p></td>
                 <td>    <p th:text="${ram.nazwa}"></p></td>
                 <td>    <p th:text="${ram.cena} + ' zł'"></p></td>

@@ -65,7 +65,7 @@ INSERT INTO obudowa(obudowa_id, obrazek, producent, nazwa, kolor, typ_ksztaltu, 
 (8, '/images/obudowy/obudowa8.jpg', 'Cooler Master', 'MasterBox MB511 RGB', 'CZARNY', 'ATX Mid Tower', 410.0, 6, 2, 319.0),
 (9, '/images/obudowy/obudowa9.jpg', 'Cooler Master', 'MasterCase H500P Mesh', 'BIAŁY', 'ATX Mid Tower', 412.0, 2, 2, 649.0);
 
-INSERT INTO plyta_glowna(plyta_glowna_id, obrazek, producent, nazwa, socket, typ_ksztaltu, chipset, typ_pamieci, sloty_pamieci, max_obslugiwana_ilosc_pamieci, obslugiwane_szybkosci_pamieci,sloty_pcie_x16, sloty_pcie_x8, sloty_pcie_x4, sloty_pcie_x1, sloty_msata, sloty_sata, sloty_m2, sloty_usb2, sloty_usb3, cena) VALUES
+INSERT INTO plyta_glowna(plyta_glowna_id, obrazek, producent, nazwa, socket, typ_ksztaltu, chipset, typ_pamieci, sloty_pamieci, max_obslugiwana_ilosc_pamieci, obslugiwane_szybkosci_pamieci,sloty_pcie_x16, sloty_pcie_x8, sloty_pcie_x4, sloty_pcie_x1, sloty_msata, sloty_sata, sloty_m2, sloty_usb2, sloty_usb3, cena)
 VALUES (0, '/images/plyty_glowne/plyta0.jpg', 'ASRock', 'B450M PRO4', 'AM4', 'Micro ATX', 'AMD B450', 'DDR4', 4, 64, '2133,2400,2666,2933,3200', 2,0,0,1, 0, 4, 2, 2, 0, 629),
 (1, '/images/plyty_glowne/plyta1.jpg', 'MSI', 'MPG X570 GAMING PLUS', 'AM4', 'ATX', 'AMD X570', 'DDR4', 4, 128, '1866,2133,2400,2666,2800,2933,3000,3200,3466,3600,3733', 2,0,0,3, 0, 6, 2, 2, 2, 799),
 (2, '/images/plyty_glowne/plyta2.jpg', 'Asus', 'ROG Strix X570-E Gaming', 'AM4', 'ATX', 'AMD X570', 'DDR4', 4, 128, '1866,2133,2400,2666,2800,2933,3000,3200,3466,3600,3733', 3,0,0,2, 0, 8, 2, 2, 2, 1449),
