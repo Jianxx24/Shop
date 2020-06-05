@@ -31,7 +31,7 @@
                 <p>Procesor:</p>
             </td>
             <td>
-                <img th:src="${komputer.procesor.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.procesor.obrazek}" />
             </td>
 
             <td>
@@ -77,7 +77,7 @@
                 <p>Płyta Główna:</p>
             </td>
             <td>
-                <img th:src="${komputer.plytaGlowna.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.plytaGlowna.obrazek}" />
             </td>
 
             <td>
@@ -112,7 +112,7 @@
 
             <tr th:each="ram : ${ram}">
                 <td><p th:text="'RAM' + ${ramStat.index}"></p> </td>
-                <td>   <img th:src="${ram.obrazek}" /></td>
+                <td>   <img width="100px" height="100px" th:src="${ram.obrazek}" /></td>
                 <td>  <p th:text="${ram.producent}"></p></td>
                 <td>    <p th:text="${ram.nazwa}"></p></td>
                 <td>    <p th:text="${ram.cena} + ' zł'"></p></td>
@@ -173,7 +173,7 @@
                 <p>Karta Graficzna:</p>
             </td>
             <td>
-                <img th:src="${komputer.kartaGraficzna.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.kartaGraficzna.obrazek}" />
             </td>
 
             <td>
@@ -216,7 +216,7 @@
                 <p>Zasilacz:</p>
             </td>
             <td>
-                <img th:src="${komputer.zasilacz.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.zasilacz.obrazek}" />
             </td>
 
             <td>
@@ -259,7 +259,7 @@
                 <p>Napęd optyczny:</p>
             </td>
             <td>
-                <img th:src="${komputer.napedOptyczny.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.napedOptyczny.obrazek}" />
             </td>
 
             <td>
@@ -302,7 +302,7 @@
                 <p>Obudowa:</p>
             </td>
             <td>
-                <img th:src="${komputer.obudowa.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.obudowa.obrazek}" />
             </td>
 
             <td>
@@ -354,7 +354,7 @@
                 <p>Dysk:</p>
             </td>
             <td>
-                <img th:src="${komputer.dysk.obrazek}" />
+                <img width="100px" height="100px" th:src="${komputer.dysk.obrazek}" />
             </td>
 
             <td>
