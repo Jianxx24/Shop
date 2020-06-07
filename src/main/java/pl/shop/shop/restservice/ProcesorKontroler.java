@@ -22,22 +22,22 @@ public class ProcesorKontroler {
     @Autowired
     private KomputerService komputerService;
 
-    @GetMapping(value="/all", produces="application/json")
+    @GetMapping(value="/rest/all", produces="application/json")
     public ResponseEntity<List<Procesor>> getAllProcesor(){
         return ResponseEntity.ok(procesorService.findAll());
     }
 
-    @GetMapping(value="/socket/{socket}", produces="application/json")
+    @GetMapping(value="/rest/socket/{socket}", produces="application/json")
     public ResponseEntity<List<Procesor>> getAllProcesorBySocket(@PathVariable String socket){
         return ResponseEntity.ok(procesorService.findBySocket(socket));
     }
-    @GetMapping(value="/producent/{producent}", produces="application/json")
+    @GetMapping(value="/rest/producent/{producent}", produces="application/json")
     public ResponseEntity<List<Procesor>> getAllProcesorByProducent(@PathVariable String producent){
         return ResponseEntity.ok(procesorService.findByProducent(producent));}
-    @GetMapping(value="/cores/{cores}", produces="application/json")
+    @GetMapping(value="/rest/cores/{cores}", produces="application/json")
     public ResponseEntity<List<Procesor>> getAllProcesorByCores(@PathVariable int cores){
         return ResponseEntity.ok(procesorService.findByIloscRdzeni(cores));}
-    @PostMapping("/add")
+    @PostMapping("/rest/add")
     public Procesor newProcesor(@RequestBody Procesor newProcesor) {
 
         return procesorService.createProcesorEntry(newProcesor);
@@ -66,7 +66,7 @@ public class ProcesorKontroler {
 
         }
 
-        return "logowanie";
+        return "redirect:/logowanie";
     }
 
 

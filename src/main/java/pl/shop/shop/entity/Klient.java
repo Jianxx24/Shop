@@ -10,7 +10,8 @@ import java.util.List;
 @Table(name="klient")
 public class Klient {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "klient_sequence", initialValue = 6)
+    @GeneratedValue(generator = "klient_sequence")
     private long klientId;
     private String imie;
     private String nazwisko;
@@ -19,6 +20,7 @@ public class Klient {
     private String nrKartaKredytowa;
     private String username;
     private String password;
+    private boolean admin = false;
 
     @OneToMany (mappedBy = "klient" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
@@ -27,6 +29,23 @@ public class Klient {
     @OneToOne(mappedBy = "klient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
     private Koszyk koszyk;
+
+
+    public String getNrKartaKredytowa() {
+        return nrKartaKredytowa;
+    }
+
+    public void setNrKartaKredytowa(String nrKartaKredytowa) {
+        this.nrKartaKredytowa = nrKartaKredytowa;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 
     public String getUsername() {
         return username;

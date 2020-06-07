@@ -17,18 +17,18 @@ public class KlientKontroler {
 
 
 
-    @GetMapping(value = "/all", produces = "application/json")
+    @GetMapping(value = "/rest/all", produces = "application/json")
     public ResponseEntity<List<Klient>> getAllClients() {
         return ResponseEntity.ok(klientService.findAll());
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
+    @GetMapping(value = "/rest/{id}", produces = "application/json")
     public ResponseEntity<Klient> getClientById(@PathVariable Long id) {
         Optional<Klient> klient = klientService.findById(id);
         return ResponseEntity.ok(klient.get());
     }
 
-    @PostMapping("/add")
+    @PostMapping("/rest/add")
     public Klient newClient(@RequestBody Klient newKlient) {
 
         return klientService.createKlientEntry(newKlient);

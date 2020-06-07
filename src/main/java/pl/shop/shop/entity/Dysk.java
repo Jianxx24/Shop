@@ -14,7 +14,7 @@ public class Dysk {
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
-    private float pojemnosc; // 2tb
+    private int pojemnosc; // 2tb
     private String typ; //7200rpm lub SSD
     private int cache; // w mb
     private String wspolczynnikKsztaltu; // np. 3.5 cala join z obudową
@@ -63,7 +63,7 @@ public class Dysk {
         return pojemnosc;
     }
 
-    public void setPojemnosc(float pojemnosc) {
+    public void setPojemnosc(int pojemnosc) {
         this.pojemnosc = pojemnosc;
     }
 

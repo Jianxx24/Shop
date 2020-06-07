@@ -1,17 +1,17 @@
-INSERT INTO klient (klient_id,imie,nazwisko,adres,miasto,nr_karta_kredytowa, username, password) VALUES
-(0,'adam', 'kowalski','ul 3 maja 11/2', 'lublin', '1234567890124567', 'adam123', '123'),
-(1,'michalina', 'jakas','ul 7 maja 11/2', 'warszawa', '1234567890124567', 'michalina123', '123'),
-(2,'Michał', 'Wiśniewski','ul Ognista 11/2', 'warszawa', '1234567890124567', 'wisnia123', '123'),
-(3,'Krzysztof', 'Krawczyk','ul Tango 11/2', 'warszawa', '1234567890124567', 'krzychu123', '123'),
-(4,'Paweł', 'Podaj','ul Pasztet 11/2', 'warszawa', '1234567890124567', 'pablo123', '123'),
-(5,'Łukasz', 'Dziób','ul Ptasia 11/2', 'warszawa', '1234567890124567', 'ptaku123', '123');
+INSERT INTO klient (klient_id,imie,nazwisko,adres,miasto,nr_karta_kredytowa, username, password, admin) VALUES
+(0,'adam', 'kowalski','ul 3 maja 11/2', 'lublin', '1234567890124567', 'adam123', '123', true),
+(1,'michalina', 'jakas','ul 7 maja 11/2', 'warszawa', '1234567890124567', 'michalina123', '123', false),
+(2,'Michał', 'Wiśniewski','ul Ognista 11/2', 'warszawa', '1234567890124567', 'wisnia123', '123', false),
+(3,'Krzysztof', 'Krawczyk','ul Tango 11/2', 'warszawa', '1234567890124567', 'krzychu123', '123', false),
+(4,'Paweł', 'Podaj','ul Pasztet 11/2', 'warszawa', '1234567890124567', 'pablo123', '123', false),
+(5,'Łukasz', 'Dziób','ul Ptasia 11/2', 'warszawa', '1234567890124567', 'ptaku123', '123', false);
 
-INSERT INTO koszyk(koszyk_id, ukonczone, klient_id) VALUES
-(0, false, 0);
+INSERT INTO koszyk(koszyk_id, ukonczone, klient_id, cena) VALUES
+(0, false, 0, 0);
 
 
-INSERT INTO koszyk(koszyk_id, ukonczone, klient_id) VALUES
-(1, false, 1);
+INSERT INTO koszyk(koszyk_id, ukonczone, klient_id, cena) VALUES
+(1, false, 1, 0);
 
 
 

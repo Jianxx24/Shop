@@ -23,6 +23,7 @@ public class HomeKontroler {
     @GetMapping("/sesja")
     public String getSesja(Model model, HttpSession session){
 
+        model.addAttribute("id", session.getId());
         model.addAttribute("sesja_klientId", session.getAttribute("klientId"));
         return "sesja";
     }

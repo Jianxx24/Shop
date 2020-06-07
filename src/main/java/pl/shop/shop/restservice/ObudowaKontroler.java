@@ -6,45 +6,49 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.shop.shop.entity.Komputer;
-import pl.shop.shop.entity.PlytaGlowna;
+import pl.shop.shop.entity.Obudowa;
 import pl.shop.shop.service.KomputerService;
-import pl.shop.shop.service.PlytaGlownaService;
+import pl.shop.shop.service.ObudowaService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/mobo")
-public class PlytaGlownaKontroler {
+@RequestMapping("/obudowa")
+public class ObudowaKontroler {
     @Autowired
-    private PlytaGlownaService plytaGlownaService;
+    private ObudowaService ObudowaService;
 
     @Autowired
     private KomputerService komputerService;
 
     @GetMapping(value="/rest/all", produces="application/json")
-    ResponseEntity<List<PlytaGlowna>> findAll(){
-        return ResponseEntity.ok(plytaGlownaService.findAll());
-    }
-    @GetMapping(value="/rest/socket/{socket}", produces="application/json")
-    ResponseEntity<List<PlytaGlowna>> findBySocket(@PathVariable String socket){
-        return ResponseEntity.ok(plytaGlownaService.findBySocket(socket));
+    public ResponseEntity<List<Obudowa>> getAllObudowa(){
+        return ResponseEntity.ok(ObudowaService.findAll());
     }
 
+    @PostMapping("/rest/add")
+    public Obudowa newObudowa(@RequestBody Obudowa newObudowa) {
+        return ObudowaService.createObudowaEntry(newObudowa);
+    }
+
+
+
+
     @GetMapping("/list")
-    public String MOBOlist(Model model) {
-        List<PlytaGlowna> plytaGlowna = plytaGlownaService.findAll();
-        model.addAttribute("plytaGlowna", plytaGlowna);
-        return "plyta_glowna";
+    public String Obudowalist(Model model) {
+        List<Obudowa> Obudowa = ObudowaService.findAll();
+        model.addAttribute("obudowa", Obudowa);
+        return "obudowa";
     }
     @RequestMapping(value = "/dodaj", method = RequestMethod.POST)
-    public String plytaGlownadodaj(Model model, @RequestParam(value = "plytaGlownaId") Long plytaGlownaId, HttpSession session) {
+    public String Obudowadodaj(Model model, @RequestParam(value = "obudowaId") Long ObudowaId, HttpSession session) {
         Long klientId = (Long) session.getAttribute("klientId");
         Komputer komputer;
         if(klientId != null) {
             komputer = komputerService.findByKlientIdAndZlozone(klientId, false).get(0);
             if(komputer != null){
-                komputer.setPlytaGlowna(plytaGlownaService.findById(plytaGlownaId).get());
+                komputer.setObudowa(ObudowaService.findById(ObudowaId).get());
                 komputerService.createKomputerEntry(komputer);
                 return "redirect:/komputer/skladanie";
             }

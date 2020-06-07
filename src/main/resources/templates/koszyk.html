@@ -8,9 +8,10 @@
 <th:block th:include="menu.html">
 </th:block>
 
+<h1>Koszyk</h1>
 <table border="1">
-    <tr th:each="komputery : ${komputery}">
-
+    <th:block th:each="komputery : ${komputery}">
+    <tr>
         <td>
             <p th:text = "${komputery.procesor.nazwa}"></p>
             <img width="50px" height="50px" th:src="${komputery.procesor.obrazek}" />
@@ -20,48 +21,79 @@
             <img width="50px" height="50px" th:src="${komputery.plytaGlowna.obrazek}" />
         </td>
 
+        <td>
+            <th:block th:each="ram : ${komputery.getRam()} ">
 
-        <td  th:each="ram : ${komputery.getRam()} ">
+                <p th:text = "${ram.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${ram.obrazek}" />
 
-            <p th:text = "${ram.nazwa}"></p>
-            <img width="50px" height="50px" th:src="${ram.obrazek}" />
-
+            </th:block>
         </td>
 
-
-        <td colspan="2">
+        <td>
             <p th:text = "${komputery.kartaGraficzna.nazwa}"></p>
             <img width="50px" height="50px" th:src="${komputery.kartaGraficzna.obrazek}" />
         </td>
 
-        <td colspan="2">
+        <td>
             <p th:text = "${komputery.zasilacz.nazwa}"></p>
             <img width="50px" height="50px" th:src="${komputery.zasilacz.obrazek}" />
         </td>
 
-        <td colspan="2">
+        <td>
             <p th:text = "${komputery.napedOptyczny.nazwa}"></p>
             <img width="50px" height="50px" th:src="${komputery.napedOptyczny.obrazek}" />
         </td>
 
-        <td colspan="2">
+        <td>
             <p th:text = "${komputery.obudowa.nazwa}"></p>
             <img width="50px" height="50px" th:src="${komputery.obudowa.obrazek}" />
         </td>
 
-        <td colspan="2">
+        <td>
             <p th:text = "${komputery.dysk.nazwa}"></p>
             <img width="50px" height="50px" th:src="${komputery.dysk.obrazek}" />
         </td>
 
-        <td>
+        <td colspan="2">
             <p th:text = "${komputery.cena}+ ' zł'"></p>
+        </td>
+        <td>
+
+            <form th:action="@{/koszyk/usun}"  method="POST">
+                <input name="delete" th:value="${komputery.komputerId}" type="hidden"/>
+                <input type="image" width="50px" height="50px" th:src="@{/images/inne/X.png}" alt="usuń" />
+            </form>
 
         </td>
 
+    </tr>
+
+    </th:block>
+
+
+    <tr th:if="${komputery.size() == 0 }">
+        <td colspan="6"> <h1>Koszyk jest pusty</h1></td>
 
     </tr>
 
+
+<tr>
+    <td colspan="6">
+        <form th:action="@{/zamowienia/dodaj}" >
+            <input type="submit" value="Zamawiam" class="btn btn-red" />
+        </form>
+
+
+
+    </td>
+    <td colspan="2">
+        Razem:
+    </td>
+    <td colspan="2">
+    <p th:text = "${koszyk.cena} + ' zł' "></p>
+    </td>
+</tr>
 
 </table>
 

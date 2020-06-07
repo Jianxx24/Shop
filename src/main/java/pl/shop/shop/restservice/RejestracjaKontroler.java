@@ -26,7 +26,7 @@ public class RejestracjaKontroler {
 
     @PostMapping("/rejestracja")
     public String registerUser(@ModelAttribute Klient klient){
-
+        klient.setAdmin(false);
         klientService.createKlientEntry(klient);
         Koszyk koszyk = new Koszyk();
         koszyk.setKlient(klient);

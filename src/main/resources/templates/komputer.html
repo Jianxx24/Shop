@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Twój komputer</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <th:block th:include="menu.html">
 </th:block>
 
-<p>Podzespoły twojego komputera</p>
 
+<h1>Twój komputer</h1>
 <table>
     <th:block th:each="komputer : ${komputer}">
 
@@ -66,7 +66,7 @@
             </td>
 
             <td>
-                <form th:action="@{/mobo/dodaj}"  method="POST">
+                <form th:action="@{/mobo/list}"  >
                     <input type="submit" value="Dodaj Płytę Główną" class="btn btn-red" />
                 </form>
             </td>
@@ -107,8 +107,7 @@
 
 
 
-        <tr th:unless="${komputer.ram == null}">
-
+        <tr th:unless="${komputer.ram.isEmpty()}">
 
             <tr th:each="ram : ${ram}">
                 <td><p th:text="'RAM' + ${ramStat.index}"></p> </td>
@@ -125,30 +124,34 @@
 
             </tr>
 
+
+
+
         </tr>
-
-
-        <tr th:if="${komputer.ram.size() == 0}" >
-
-            <td>RAM: </td>
-
-            <td>
-                <form th:action="@{/ram/list}" >
-                    <input type="submit" value="Dodaj RAM" class="btn btn-red" />
-                </form>
-            </td>
-        </tr>
-
-        <tr th:if="${komputer.ram.size() != 0 }" >
-
-            <td></td>
-
+        <tr th:unless="${komputer.ram.isEmpty()}">
+                <td></td>
             <td>
                 <form th:action="@{/ram/list}" >
                     <input type="submit" value="Dodaj Kolejny RAM" class="btn btn-red" />
                 </form>
             </td>
         </tr>
+
+
+        <tr th:if="${komputer.ram.isEmpty() }" >
+
+            <td>RAM:</td>
+
+            <td>
+                <form th:action="@{/ram/list}" >
+                    <input type="submit" value="Dodaj RAM" class="btn btn-red" />
+                </form>
+            </td>
+
+
+
+        </tr>
+
 
 
 
@@ -162,7 +165,7 @@
             </td>
 
             <td>
-                <form th:action="@{/gpu/dodaj}"  method="POST">
+                <form th:action="@{/gpu/list}">
                     <input type="submit" value="Dodaj GPU" class="btn btn-red" />
                 </form>
             </td>
@@ -205,7 +208,7 @@
             </td>
 
             <td>
-                <form th:action="@{/zasilacz/dodaj}"  method="POST">
+                <form th:action="@{/zasilacz/list}">
                     <input type="submit" value="Dodaj Zasilacz" class="btn btn-red" />
                 </form>
             </td>
@@ -248,7 +251,7 @@
             </td>
 
             <td>
-                <form th:action="@{/naped/dodaj}"  method="POST">
+                <form th:action="@{/naped/list}" >
                     <input type="submit" value="Dodaj Napęd Optyczny" class="btn btn-red" />
                 </form>
             </td>
@@ -291,7 +294,7 @@
             </td>
 
             <td>
-                <form th:action="@{/obudowa/dodaj}"  method="POST">
+                <form th:action="@{/obudowa/list}" >
                     <input type="submit" value="Dodaj Obudowę" class="btn btn-red" />
                 </form>
             </td>
@@ -343,7 +346,7 @@
 
 
             <td>
-                <form th:action="@{/dysk/dodaj}"  method="POST">
+                <form th:action="@{/dysk/list}">
                     <input type="submit" value="Dodaj Dysk" class="btn btn-red" />
                 </form>
             </td>

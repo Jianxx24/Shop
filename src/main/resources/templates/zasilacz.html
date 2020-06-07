@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zasilacz</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Typ</th>
+<th>Moc</th>
+    <th>Złącza Eps</th>
+    <th>Złącza Pcie6+2</th>
+    <th>Złącza Sata</th>
+    <th>Złącza Molex4</th>
+    <th>Cena</th>
+    <tr th:each="zasilacz : ${zasilacz}">
+        <td>
+            <img width="100px" height="100px" th:src="${zasilacz.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${zasilacz.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${zasilacz.nazwa}"></p>
+        </td>
+
+        <td>
+            <p th:text="${zasilacz.typKsztaltu}"></p>
+        </td>
+
+        <td>
+            <p th:text="${zasilacz.moc} + ' W'"></p>
+        </td>
+
+        <td>
+            <p th:text="${zasilacz.zlaczaEps}"></p>
+        </td>
+        <td>
+            <p th:text="${zasilacz.zlaczaPcie6Plus2}"></p>
+        </td>
+        <td>
+            <p th:text="${zasilacz.zlaczaSata}"></p>
+        </td>
+        <td>
+            <p th:text="${zasilacz.zlaczaMolex4Pin}"></p>
+        </td>
+
+
+
+        <td>
+            <p th:text="${zasilacz.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/zasilacz/dodaj}"  method="POST">
+                <input name="zasilaczId" th:value="${zasilacz.zasilaczId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dysk</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+<th>Pojemność</th>
+    <th>Typ</th>
+    <th>Cache</th>
+    <th>Typ Kształtu</th>
+    <th>Interfejs</th>
+    <th>Cena</th>
+    <tr th:each="dysk : ${dysk}">
+        <td>
+            <img width="100px" height="100px" th:src="${dysk.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${dysk.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${dysk.nazwa}"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.pojemnosc} + ' GB'"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.typ}"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.cache} + ' MB'"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.wspolczynnikKsztaltu}"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.interfejs}"></p>
+        </td>
+
+
+
+        <td>
+            <p th:text="${dysk.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/dysk/dodaj}"  method="POST">
+                <input name="dyskId" th:value="${dysk.dyskId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

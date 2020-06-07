@@ -24,6 +24,22 @@ public class NapedOptyczny {
     @JsonBackReference
     private List<Komputer> komputer;
 
+    public long getNapedOptycznyId() {
+        return napedOptycznyId;
+    }
+
+    public void setNapedOptycznyId(long napedOptycznyId) {
+        this.napedOptycznyId = napedOptycznyId;
+    }
+
+    public float getTypKsztaltu() {
+        return typKsztaltu;
+    }
+
+    public void setTypKsztaltu(float typKsztaltu) {
+        this.typKsztaltu = typKsztaltu;
+    }
+
     public long getnapedOptycznyId() {
         return napedOptycznyId;
     }

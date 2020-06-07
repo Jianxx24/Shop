@@ -7,7 +7,8 @@ import java.util.List;
 @Table(name="komputer")
 public class Komputer {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "komputer_sequence", initialValue = 3)
+    @GeneratedValue(generator = "komputer_sequence")
     private long komputerId;
     private boolean zlozone; // czy wszystkie czesci sa, jak tak to mozna dodac do koszyka
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Napęd Optyczny</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Interfejs</th>
+    <th>Typ Ksztaltu</th>
+    <th>Cache</th>
+    <th>Szybkość</th>
+    <th>Cena</th>
+    <tr th:each="napedOptyczny : ${napedOptyczny}">
+        <td>
+            <img width="100px" height="100px" th:src="${napedOptyczny.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${napedOptyczny.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${napedOptyczny.nazwa}"></p>
+        </td>
+
+        <td>
+            <p th:text="${napedOptyczny.interfejs}"></p>
+        </td>
+
+        <td>
+            <p th:text="${napedOptyczny.typKsztaltu}"></p>
+        </td>
+
+        <td>
+            <p th:text="${napedOptyczny.cache}"></p>
+        </td>
+
+        <td>
+            <p th:text="${napedOptyczny.szybkosc}"></p>
+        </td>
+
+
+        <td>
+            <p th:text="${napedOptyczny.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/naped/dodaj}"  method="POST">
+                <input name="napedOptycznyId" th:value="${napedOptyczny.napedOptycznyId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

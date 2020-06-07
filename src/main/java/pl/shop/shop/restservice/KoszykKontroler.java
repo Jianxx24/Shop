@@ -29,11 +29,11 @@ public class KoszykKontroler {
     @Autowired
     private KomputerService komputerService;
 
-    @GetMapping(value = "/all", produces = "application/json")
+    @GetMapping(value = "/rest/all", produces = "application/json")
     public ResponseEntity<List<Koszyk>> getAllCarts(){
         return ResponseEntity.ok(koszykService.findAll());
     }
-    @GetMapping(value = "/{id}", produces = "application/json")
+    @GetMapping(value = "/rest/{id}", produces = "application/json")
     public ResponseEntity<Koszyk> getCartById(@PathVariable Long id){
         Optional<Koszyk> koszyk = koszykService.findById(id);
         return ResponseEntity.ok(koszyk.get());
@@ -48,12 +48,14 @@ public class KoszykKontroler {
             Optional<Koszyk> koszyk = koszykService.findByKlientId(klientId);
             List<Komputer> komputery = koszyk.get().getKomputer();
 
+            koszyk.get().obliczCeneRazem();
+            model.addAttribute("koszyk", koszyk.get());
             model.addAttribute("komputery", komputery);
 
             return "koszyk";
         }
 
-        return "logowanie";
+        return "redirect:/logowanie";
     }
 
 
@@ -85,6 +87,17 @@ public class KoszykKontroler {
 
 
         return "redirect:/komputer/skladanie";
+    }
+
+    @RequestMapping (value = "/usun", method = RequestMethod.POST)
+    public String removeFromCart(HttpSession session, @RequestParam(name = "delete") String delete){
+        Long klientId = (Long) session.getAttribute("klientId");
+        Komputer komputer = komputerService.findById(Long.parseLong(delete)).get();
+
+        if(komputer.getKlient().getKlientId() == klientId) komputerService.deleteById(Long.parseLong(delete));
+
+            return "redirect:/koszyk/list";
+
     }
 
 

@@ -15,6 +15,7 @@ import pl.shop.shop.service.RAMService;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,35 +59,50 @@ public class KomputerKontroler {
         return ResponseEntity.ok(komputery);
     }
 
+    @PostMapping("/rest/add")
+    public Komputer newKomputer(@RequestBody Komputer newKomputer) {
+
+        return KomputerService.createKomputerEntry(newKomputer);
+    }
+
+
+
     @GetMapping(value = "/skladanie", produces = "application/json")
     public String getKomputerForKlientTemplate( Model model, HttpSession session) {
         Long klientid = (Long) session.getAttribute("klientId");
         if (klientid != null) {
             List<Komputer> komputery = KomputerService.findByKlientIdAndZlozone(klientid, false);
             Komputer komputer;
-            List<RAM> ram;
+            List<RAM> ram = new ArrayList<RAM>();
+
             if (!komputery.isEmpty()) {
                 komputer = komputery.get(0);
+                komputer.obliczCene();
+                ram = komputer.getRam();
+                KomputerService.createKomputerEntry(komputer);
 
 
             } else {
                 komputer = new Komputer();
+
                 Optional<Klient> klient = klientService.findById(klientid);
                 komputer.setKlient(klient.get());
                 komputer.setZlozone(false);
-
+                komputer.setCena(0);
+                komputer.setRam(ram);
                 KomputerService.createKomputerEntry(komputer);
 
 
             }
-            ram = komputer.getRam();
-            komputer.obliczCene();
+
+
+
             model.addAttribute("komputer", komputer);
             model.addAttribute("ram", ram);
             return "komputer";
 
         }
-        return "logowanie";
+        return "redirect:/logowanie";
     }
 
     @RequestMapping(value = "/skladanie/usun", method = RequestMethod.POST)
@@ -139,28 +155,24 @@ public class KomputerKontroler {
         Komputer komputer = KomputerService.findByKlientIdAndZlozone(klientId, false).get(0);
         List<RAM> ram = komputer.getRam();
 
-        ram.remove(Integer.parseInt(delete));
+        if(ram != null) {
+            if (ram.size() > 0) {
+                ram.remove(Integer.parseInt(delete));
+                komputer.setRam(ram);
+            } else {
+                komputer.setRam(null);
+            }
+        }
 
-        komputer.setRam(ram);
+
+
+
         KomputerService.createKomputerEntry(komputer);
 
 
         model.addAttribute("komputer", komputer);
         return "redirect:/komputer/skladanie";
     }
-
-
-
-
-
-
-
-    @PostMapping("/rest/add")
-    public Komputer newKomputer(@RequestBody Komputer newKomputer) {
-
-        return KomputerService.createKomputerEntry(newKomputer);
-    }
-
 
 
 

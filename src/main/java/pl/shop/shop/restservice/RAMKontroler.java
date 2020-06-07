@@ -74,7 +74,7 @@ public class RAMKontroler {
         }
 
 
-        return "logowanie";
+        return "redirect:/logowanie";
     }
 
 

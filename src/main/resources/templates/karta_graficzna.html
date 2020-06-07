@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Karta Graficzna</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Rozmiar Pamięci</th>
+<th>Typ Pamięci:</th>
+    <th>Taktowanie Procesora</th>
+    <th>Taktowanie Pamięci</th>
+    <th>Interfejs</th>
+    <th>Długość</th>
+    <th>TDP</th>
+<th>Zasilanie</th>
+<th>Cena</th>
+
+
+    <th>Cena</th>
+    <tr th:each="kartaGraficzna : ${kartaGraficzna}">
+        <td>
+            <img width="100px" height="100px" th:src="${kartaGraficzna.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${kartaGraficzna.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${kartaGraficzna.nazwa}"></p>
+        </td>
+
+        <td>
+            <p th:text="${kartaGraficzna.rozmiarPamieci} + ' MB'"></p>
+        </td>
+
+        <td>
+            <p th:text="${kartaGraficzna.typPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${kartaGraficzna.taktowanieProcesora} + ' MHZ'"></p>
+        </td>
+        <td>
+            <p th:text="${kartaGraficzna.taktowaniePamieci}+ ' MHZ'"></p>
+        </td>
+        <td>
+            <p th:text="${kartaGraficzna.interfejs}"></p>
+        </td>
+
+        <td>
+            <p th:text="${kartaGraficzna.dlugosc}+ ' mm'"></p>
+        </td>
+
+        <td>
+            <p th:text="${kartaGraficzna.TDP} + ' W'"></p>
+        </td>
+
+        <td>
+            <p th:text="${kartaGraficzna.zasilanieZewnetrzne}"></p>
+        </td>
+
+
+
+
+
+
+        <td>
+            <p th:text="${kartaGraficzna.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/gpu/dodaj}"  method="POST">
+                <input name="kartaGraficznaId" th:value="${kartaGraficzna.kartaGraficznaId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

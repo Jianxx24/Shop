@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Płyta Główna</title>
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Socket</th>
+    <th>Kształt</th>
+    <th>Chipset</th>
+    <th>Typ pamięci</th>
+    <th>Sloty pamięci</th>
+    <th>Max pamięć</th>
+    <th>Szybkość pamięci</th>
+    <th>PCIe X16</th>
+    <th>PCIe X8</th>
+    <th>PCIe X4</th>
+    <th>PCIe X1</th>
+    <th>mSata</th>
+    <th>Sata6</th>
+    <th>M2</th>
+    <th>USB2.0</th>
+    <th>USB3.0</th>
+
+    <th>Cena</th>
+
+
+    <tr th:each="plytaGlowna : ${plytaGlowna}">
+        <td>
+            <img width="100px" height="100px" th:src="${plytaGlowna.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.nazwa}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.socket}"></p>
+        </td>
+
+        <td>
+            <p th:text="${plytaGlowna.typKsztaltu}"></p>
+        </td>
+
+        <td>
+            <p th:text="${plytaGlowna.chipset}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.typPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.maxObslugiwanaIloscPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.obslugiwaneSzybkosciPamieci}"></p>
+        </td>
+
+
+
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX16}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX8}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX4}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX1}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyMSata}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotySata6Gb}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyM2}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.wejsciaUSB20}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.wejsciaUSB30}"></p>
+        </td>
+
+
+        <td>
+            <p th:text="${plytaGlowna.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/mobo/dodaj}"  method="POST">
+                <input name="plytaGlownaId" th:value="${plytaGlowna.plytaGlownaId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

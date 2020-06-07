@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <title>Logowanie</title>
 </head>
-<body>
 <th:block th:include="menu.html">
 </th:block>
 
-Zaloguj się
+
+<th:block th:if="${klientId == null}">
+    <h1>Zaloguj się</h1>
+    <form action="#" th:action="@{/logowanie}" th:object="${klient}" method="post">
+        <p>Nazwa użytkownika: <input type="text" th:field="*{username}" /></p>
+        <p>Hasło: <input type="password" th:field="*{password}" /></p>
+        <p><input type="submit" value="Zaloguj" /> </p>
+    </form>
+
+</th:block>
+
+<th:block th:unless="${klientId == null}">
+Jesteś już zalogowany
+
+    <form th:action="@{/wylogowanie}" >
+        <input type="submit" value="Wyloguj się" class="btn btn-red" />
+    </form>
+
+
+
+</th:block>
+
+
+
+
+
+
 </body>
 </html>

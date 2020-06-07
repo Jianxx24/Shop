@@ -9,7 +9,8 @@ import java.util.List;
 @Table(name="koszyk")
 public class Koszyk {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "koszyk_sequence", initialValue = 2)
+    @GeneratedValue(generator = "koszyk_sequence")
     private long koszykId;
 
     @OneToOne
@@ -19,6 +20,28 @@ public class Koszyk {
     @OneToMany (mappedBy = "koszyk" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
+
+
+    private float cena=0;
+
+    public void obliczCeneRazem(){
+        cena=0;
+        if(komputer.size() > 0){
+            for(int i = 0; i< komputer.size(); i++){
+                cena += komputer.get(i).getCena();
+            }
+
+        }
+
+    }
+
+    public float getCena() {
+        return cena;
+    }
+
+    public void setCena(float cena) {
+        this.cena = cena;
+    }
 
     public List<Komputer> getKomputer() {
         return komputer;
