@@ -21,6 +21,17 @@ public class Klient {
     private String username;
     private String password;
     private boolean admin = false;
+    @OneToMany(mappedBy = "klient",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Zamowienie> zamowienie;
+
+    public List<Zamowienie> getZamowienie() {
+        return zamowienie;
+    }
+
+    public void setZamowienie(List<Zamowienie> zamowienie) {
+        this.zamowienie = zamowienie;
+    }
 
     @OneToMany (mappedBy = "klient" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference

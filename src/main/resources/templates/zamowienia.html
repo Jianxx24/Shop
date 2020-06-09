@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<th:block th:include="menu.html">
+</th:block>
+
+<h1>Zamowienia</h1>
+
+<table border="1">
+    <th:block th:each="zamowienie : ${zamowienia}">
+        <tr>
+            <td><p th:text="${'Numer zamówienia: '+zamowienie.zamowienieId}"></p></td>
+            <td> <p th:text = "${#dates.format(zamowienie.dataZamowienia, 'dd-MMM-yyyy')}"></p> </td>
+            <td><p padding="1" th:text = "${zamowienie.klient.imie + ' '+ zamowienie.klient.nazwisko}"></p></td>
+            <td><p th:text = "${'Id klienta '+zamowienie.klient.klientId}"></p></td>
+        </tr>
+        <th:block th:each="komputery : ${zamowienie.komputerList}">
+        <tr>
+            <td>
+                <p th:text = "${komputery.procesor.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.procesor.obrazek}" />
+            </td>
+            <td>
+                <p th:text = "${komputery.plytaGlowna.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.plytaGlowna.obrazek}" />
+            </td>
+
+            <td>
+                <th:block th:each="ram : ${komputery.getRam()} ">
+
+                    <p th:text = "${ram.nazwa}"></p>
+                    <img width="50px" height="50px" th:src="${ram.obrazek}" />
+
+                </th:block>
+            </td>
+
+            <td>
+                <p th:text = "${komputery.kartaGraficzna.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.kartaGraficzna.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text = "${komputery.zasilacz.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.zasilacz.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text = "${komputery.napedOptyczny.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.napedOptyczny.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text = "${komputery.obudowa.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.obudowa.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text = "${komputery.dysk.nazwa}"></p>
+                <img width="50px" height="50px" th:src="${komputery.dysk.obrazek}" />
+            </td>
+
+            <td colspan="2">
+                <p th:text = "${komputery.cena}+ ' zł'"></p>
+            </td>
+
+        </tr>
+
+        </th:block>
+    </th:block>
+
+
+    <tr th:if="${zamowienia.size() == 0 }">
+        <td colspan="6"> <h1>Brak zamowien</h1></td>
+
+    </tr>
+
+</table>
+
+
+
+
+</body>
+</html>

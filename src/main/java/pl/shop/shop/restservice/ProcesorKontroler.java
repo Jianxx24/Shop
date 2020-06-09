@@ -1,6 +1,7 @@
 package pl.shop.shop.restservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,18 @@ public class ProcesorKontroler {
     public Procesor newProcesor(@RequestBody Procesor newProcesor) {
 
         return procesorService.createProcesorEntry(newProcesor);
+    }
+    @DeleteMapping("/rest/delete/{id}")
+    public ResponseEntity<Long> deleteCpu(@PathVariable Long id){
+        boolean isRemoved = procesorService.delete(id);
+        if(!isRemoved){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(id, HttpStatus.OK);
+    }
+    @RequestMapping(value="/rest/put/{id}", method=RequestMethod.PUT)
+    public ResponseEntity<Procesor> updateProcesor(@PathVariable("id") long id, @RequestBody Procesor procesor){
+        return ResponseEntity.ok(procesorService.createProcesorEntry(procesor));
     }
 
 

@@ -93,9 +93,12 @@ public class KoszykKontroler {
     public String removeFromCart(HttpSession session, @RequestParam(name = "delete") String delete){
         Long klientId = (Long) session.getAttribute("klientId");
         Komputer komputer = komputerService.findById(Long.parseLong(delete)).get();
-
-        if(komputer.getKlient().getKlientId() == klientId) komputerService.deleteById(Long.parseLong(delete));
-
+        if(komputer.getKlient().getKlientId() == klientId) {
+            komputer.setKoszyk(null);
+            komputer.setKlient(null);
+            komputerService.createKomputerEntry(komputer);
+            komputerService.deleteById(Long.parseLong(delete));
+        }
             return "redirect:/koszyk/list";
 
     }

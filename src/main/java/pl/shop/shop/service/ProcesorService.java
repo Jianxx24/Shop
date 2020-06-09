@@ -14,6 +14,7 @@ import java.util.Optional;
 public class ProcesorService {
     @Autowired
     private ProcesorRepository procesorRepository;
+    
 
     public List<Procesor> findAll() {
         return (List<Procesor>)procesorRepository.findAll();
@@ -27,4 +28,13 @@ public class ProcesorService {
     public Procesor createProcesorEntry(Procesor newProcesor) {
         return procesorRepository.save(newProcesor);
     }
+
+    public boolean delete(Long id) {
+        if (procesorRepository.findById(id)!=null) {
+            procesorRepository.deleteById(id);
+            return true;
+        }
+        else return false;
+    }
+
 }

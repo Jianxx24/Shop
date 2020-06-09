@@ -19,6 +19,9 @@ public class Komputer {
     @ManyToOne
     @JoinColumn(name ="koszyk_id", nullable = true)
     private Koszyk koszyk;
+    @ManyToOne
+    @JoinColumn(name="zamowienie_id", nullable = true)
+    private Zamowienie zamowienie;
 
 
     @ManyToOne
@@ -183,5 +186,13 @@ public class Komputer {
 
     public void setCena(float cena) {
         this.cena = cena;
+    }
+
+    public Zamowienie getZamowienie() {
+        return zamowienie;
+    }
+
+    public void setZamowienie(Zamowienie zamowienie) {
+        this.zamowienie = zamowienie;
     }
 }
