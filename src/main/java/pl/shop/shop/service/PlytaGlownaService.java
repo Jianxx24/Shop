@@ -21,4 +21,8 @@ public class PlytaGlownaService {
     public List<PlytaGlowna> findBySocket(String socket) {
         return plytaGlownaRepository.findBySocketIgnoreCase(socket);
     }
+
+    public List<PlytaGlowna> findByChipset(String chipset) {
+        return plytaGlownaRepository.findByChipsetContainingIgnoreCase(chipset);
+    }
 }

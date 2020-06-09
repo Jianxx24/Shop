@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @Table(name="obudowa")
 public class Obudowa {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "case_sequence", initialValue = 15)
+    @GeneratedValue(generator = "case_sequence")
     private long obudowaId;
     private String obrazek; // sciezka do obrazku
     private String producent;
@@ -23,6 +25,7 @@ public class Obudowa {
     private int sloty35Cala;
 
     private float cena;
+    @JsonIgnore
     @OneToMany (mappedBy = "obudowa" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
@@ -106,11 +109,11 @@ public class Obudowa {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }

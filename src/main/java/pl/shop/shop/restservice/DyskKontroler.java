@@ -1,6 +1,7 @@
 package pl.shop.shop.restservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +28,9 @@ public class DyskKontroler {
         return ResponseEntity.ok(DyskService.findAll());
     }
 
-    @PostMapping("/rest/add")
-    public Dysk newDysk(@RequestBody Dysk newDysk) {
-        return DyskService.createDyskEntry(newDysk);
+    @PostMapping(value = "/rest/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dysk> newDysk(@RequestBody Dysk newDysk) {
+        return ResponseEntity.ok(DyskService.createDyskEntry(newDysk));
     }
 
 

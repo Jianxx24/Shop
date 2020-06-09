@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @Table(name="ram")
 public class RAM {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "ram_sequence", initialValue = 15)
+    @GeneratedValue(generator = "ram_sequence")
     private long ramId;
     private String obrazek; // sciezka do obrazku
     private String nazwa;
@@ -23,7 +25,7 @@ public class RAM {
     private String timingi;
 
     private float cena;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "ram")
     @JsonBackReference
     private List<Komputer> komputer;
@@ -115,11 +117,11 @@ public class RAM {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }

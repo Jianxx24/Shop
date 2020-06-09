@@ -30,6 +30,10 @@ public class PlytaGlownaKontroler {
     ResponseEntity<List<PlytaGlowna>> findBySocket(@PathVariable String socket){
         return ResponseEntity.ok(plytaGlownaService.findBySocket(socket));
     }
+    @GetMapping(value="/rest/chipset/{chipset}", produces="application/json")
+    ResponseEntity<List<PlytaGlowna>> findByChipset(@PathVariable String chipset){
+        return ResponseEntity.ok(plytaGlownaService.findByChipset(chipset));
+    }
 
     @GetMapping("/list")
     public String MOBOlist(Model model) {

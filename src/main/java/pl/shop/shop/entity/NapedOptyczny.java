@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @Table(name="napedOptyczny")
 public class NapedOptyczny {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "naped_sequence", initialValue = 15)
+    @GeneratedValue(generator = "naped_sequence")
     private long napedOptycznyId;
     private String obrazek; // sciezka do obrazku
     private String producent;
@@ -20,6 +22,7 @@ public class NapedOptyczny {
     private int szybkosc;
 
     private float cena;
+    @JsonIgnore
     @OneToMany (mappedBy = "napedOptyczny" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
@@ -97,11 +100,11 @@ public class NapedOptyczny {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }
