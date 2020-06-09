@@ -2,6 +2,7 @@ package pl.shop.shop.restservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import pl.shop.shop.service.KomputerService;
 import pl.shop.shop.service.ProcesorService;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 import java.util.List;
 
 @Controller
@@ -38,10 +40,10 @@ public class ProcesorKontroler {
     @GetMapping(value="/rest/cores/{cores}", produces="application/json")
     public ResponseEntity<List<Procesor>> getAllProcesorByCores(@PathVariable int cores){
         return ResponseEntity.ok(procesorService.findByIloscRdzeni(cores));}
-    @PostMapping("/rest/add")
-    public Procesor newProcesor(@RequestBody Procesor newProcesor) {
+    @PostMapping(value = "/rest/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Procesor> newProcesor(@RequestBody Procesor newProcesor) {
 
-        return procesorService.createProcesorEntry(newProcesor);
+        return ResponseEntity.ok(procesorService.createProcesorEntry(newProcesor));
     }
     @DeleteMapping("/rest/delete/{id}")
     public ResponseEntity<Long> deleteCpu(@PathVariable Long id){

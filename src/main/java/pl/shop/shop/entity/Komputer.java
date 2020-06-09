@@ -1,5 +1,7 @@
 package pl.shop.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Komputer {
     private boolean zlozone; // czy wszystkie czesci sa, jak tak to mozna dodac do koszyka
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name ="klient_id")
     private Klient klient;
 

@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.persistence.*;
@@ -46,9 +47,6 @@ public class Klient {
         return nrKartaKredytowa;
     }
 
-    public void setNrKartaKredytowa(String nrKartaKredytowa) {
-        this.nrKartaKredytowa = nrKartaKredytowa;
-    }
 
     public boolean isAdmin() {
         return admin;
@@ -66,6 +64,7 @@ public class Klient {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -112,10 +111,6 @@ public class Klient {
 
     public void setMiasto(String miasto) {
         this.miasto = miasto;
-    }
-
-    public String getnrKartaKredytowa() {
-        return nrKartaKredytowa;
     }
 
     public void setnrKartaKredytowa(String nrKartaKredytowa) {

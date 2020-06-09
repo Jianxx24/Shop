@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @Table(name="procesor")
 public class Procesor {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "procesor_sequence", initialValue = 15)
+    @GeneratedValue(generator = "procesor_sequence")
     private long procesorId;
     private String obrazek; // sciezka do obrazku
     private String producent;
@@ -21,15 +23,15 @@ public class Procesor {
     private int TDP; // zliczane do wyboru zasilacza
     private int maksPamiec; // tego ram nie może przekroczyć
     @Column(name="l1")
-    private String L1Cache;
+    private String l1Cache;
     @Column(name="l2")
-    private String L2Cache;
+    private String l2Cache;
     @Column(name="l3")
-    private String L3Cache;
+    private String l3Cache;
     private String technologia;
 
     private float cena;
-
+    @JsonIgnore
     @OneToMany (mappedBy = "procesor" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
@@ -106,28 +108,28 @@ public class Procesor {
         this.maksPamiec = maksPamiec;
     }
 
-    public String getL1Cache() {
-        return L1Cache;
+    public String getl1Cache() {
+        return l1Cache;
     }
 
-    public void setL1Cache(String L1Cache) {
-        L1Cache = L1Cache;
+    public void setl1Cache(String L1Cache) {
+        l1Cache = L1Cache;
     }
 
-    public String getL2Cache() {
-        return L2Cache;
+    public String getl2Cache() {
+        return l2Cache;
     }
 
-    public void setL2Cache(String L2Cache) {
-        L2Cache = L2Cache;
+    public void setl2Cache(String L2Cache) {
+        l2Cache = L2Cache;
     }
 
-    public String getL3Cache() {
-        return L3Cache;
+    public String getl3Cache() {
+        return l3Cache;
     }
 
-    public void setL3Cache(String L3Cache) {
-        L3Cache = L3Cache;
+    public void setl3Cache(String L3Cache) {
+        l3Cache = L3Cache;
     }
 
     public String getTechnologia() {
@@ -146,10 +148,11 @@ public class Procesor {
         this.cena = cena;
     }
 
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }

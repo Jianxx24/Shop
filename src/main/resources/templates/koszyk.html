@@ -79,11 +79,12 @@
 
 
 <tr>
-    <td colspan="6">
+    <th colspan="6">
+        <th:block th:unless="${koszyk!=null}">
         <form th:action="@{/zamowienia/dodaj}" method="POST" >
             <input type="submit" value="Zamawiam" class="btn btn-red" />
         </form>
-
+    </th:block>
 
 
     </td>

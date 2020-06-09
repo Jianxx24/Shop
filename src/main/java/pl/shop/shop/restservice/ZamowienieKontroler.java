@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.shop.shop.entity.Komputer;
 import pl.shop.shop.entity.Koszyk;
 import pl.shop.shop.entity.Zamowienie;
@@ -81,7 +78,11 @@ public class ZamowienieKontroler {
     }
 
     @GetMapping(value="/rest/{id}")
-    public ResponseEntity<Zamowienie> findAllByKlientId(@RequestParam(value="id") Long id){
-        return (ResponseEntity<Zamowienie>) zamowienieService.findAllByKlientId(id);
+    public ResponseEntity<List<Zamowienie>> findAllByKlientId(@PathVariable(value="id") Long id){
+        return ResponseEntity.ok(zamowienieService.findAllByKlientId(id));
+    }
+    @GetMapping(value="/rest/all")
+    public ResponseEntity<List<Zamowienie>> findAll(){
+        return  ResponseEntity.ok(zamowienieService.findAll());
     }
 }

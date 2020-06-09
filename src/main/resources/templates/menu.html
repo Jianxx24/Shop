@@ -19,6 +19,7 @@
 
 <a href="/koszyk/list"> Koszyk</a>
 <th:block th:unless="${session.klientId==null}">
+    <a href="/zamowienia/list"> Zamówienia</a>
 <form th:action="@{/wylogowanie}" >
     <input type="submit" value="Wyloguj się" class="btn btn-red" />
 </form>
