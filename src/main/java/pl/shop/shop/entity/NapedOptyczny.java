@@ -36,11 +36,11 @@ public class NapedOptyczny {
         this.typKsztaltu = typKsztaltu;
     }
 
-    public long getnapedOptycznyId() {
+    public long getNapedOptycznyId() {
         return napedOptycznyId;
     }
 
-    public void setnapedOptycznyId(long napedOptyczny_id) {
+    public void setNapedOptycznyId(long napedOptyczny_id) {
         this.napedOptycznyId = napedOptyczny_id;
     }
 
