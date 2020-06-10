@@ -108,27 +108,27 @@ public class Procesor {
         this.maksPamiec = maksPamiec;
     }
 
-    public String getl1Cache() {
+    public String getL1Cache() {
         return l1Cache;
     }
 
-    public void setl1Cache(String L1Cache) {
+    public void setL1Cache(String L1Cache) {
         l1Cache = L1Cache;
     }
 
-    public String getl2Cache() {
+    public String getL2Cache() {
         return l2Cache;
     }
 
-    public void setl2Cache(String L2Cache) {
+    public void setL2Cache(String L2Cache) {
         l2Cache = L2Cache;
     }
 
-    public String getl3Cache() {
+    public String getL3Cache() {
         return l3Cache;
     }
 
-    public void setl3Cache(String L3Cache) {
+    public void setL3Cache(String L3Cache) {
         l3Cache = L3Cache;
     }
 
