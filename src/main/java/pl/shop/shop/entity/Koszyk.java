@@ -9,17 +9,39 @@ import java.util.List;
 @Table(name="koszyk")
 public class Koszyk {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long koszyk_id;
+    @SequenceGenerator(name = "koszyk_sequence", initialValue = 2)
+    @GeneratedValue(generator = "koszyk_sequence")
+    private long koszykId;
 
     @OneToOne
-    @JoinColumn(name = "klient_id")
+    @JoinColumn(name = "klientId")
     private Klient klient;
 
     @OneToMany (mappedBy = "koszyk" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
 
+
+    private float cena=0;
+
+    public void obliczCeneRazem(){
+        cena=0;
+        if(komputer.size() > 0){
+            for(int i = 0; i< komputer.size(); i++){
+                cena += komputer.get(i).getCena();
+            }
+
+        }
+
+    }
+
+    public float getCena() {
+        return cena;
+    }
+
+    public void setCena(float cena) {
+        this.cena = cena;
+    }
 
     public List<Komputer> getKomputer() {
         return komputer;
@@ -31,12 +53,12 @@ public class Koszyk {
 
     private boolean ukonczone;
 
-    public long getKoszyk_id() {
-        return koszyk_id;
+    public long getKoszykId() {
+        return koszykId;
     }
 
-    public void setKoszyk_id(long koszyk_id) {
-        this.koszyk_id = koszyk_id;
+    public void setKoszykId(long koszykId) {
+        this.koszykId = koszykId;
     }
 
     public Klient getKlient() {

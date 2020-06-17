@@ -18,15 +18,14 @@ public class KoszykService {
     public Koszyk createKoszykEntry(Koszyk newEntry){
         return koszykRepository.save(newEntry);
     }
-
-
-
-
     public List<Koszyk> findAll(){
         return (List<Koszyk>) koszykRepository.findAll();
     }
     public Optional<Koszyk> findById(Long koszykId){
         return koszykRepository.findById(koszykId);
     }
+    public Optional<Koszyk> findByKlientId(Long klientId){return  koszykRepository.findByKlientKlientId(klientId);}
+
+
 
 }

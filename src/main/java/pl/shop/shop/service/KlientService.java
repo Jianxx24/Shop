@@ -27,4 +27,7 @@ public class KlientService {
         return KlientRepository.findById(KlientId);
     }
 
+    public Optional<Klient> findByUsernameAndPassword(String username, String password){
+        return KlientRepository.findByUsernameAndPassword(username,password);
+    }
 }

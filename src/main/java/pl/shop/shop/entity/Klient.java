@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.persistence.*;
@@ -10,15 +11,28 @@ import java.util.List;
 @Table(name="klient")
 public class Klient {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long klient_id;
+    @SequenceGenerator(name = "klient_sequence", initialValue = 6)
+    @GeneratedValue(generator = "klient_sequence")
+    private long klientId;
     private String imie;
     private String nazwisko;
     private String adres;
     private String miasto;
-    private String nr_karta_kredytowa;
+    private String nrKartaKredytowa;
     private String username;
     private String password;
+    private boolean admin = false;
+    @OneToMany(mappedBy = "klient",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Zamowienie> zamowienie;
+
+    public List<Zamowienie> getZamowienie() {
+        return zamowienie;
+    }
+
+    public void setZamowienie(List<Zamowienie> zamowienie) {
+        this.zamowienie = zamowienie;
+    }
 
     @OneToMany (mappedBy = "klient" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
@@ -29,12 +43,42 @@ public class Klient {
     private Koszyk koszyk;
 
 
-    public long getKlient_id() {
-        return klient_id;
+    public String getNrKartaKredytowa() {
+        return nrKartaKredytowa;
     }
 
-    public void setKlient_id(long klient_id) {
-        this.klient_id = klient_id;
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public long getKlientId() {
+        return klientId;
+    }
+
+    public void setKlientId(long klientId) {
+        this.klientId = klientId;
     }
 
     public String getImie() {
@@ -69,12 +113,8 @@ public class Klient {
         this.miasto = miasto;
     }
 
-    public String getNr_karta_kredytowa() {
-        return nr_karta_kredytowa;
-    }
-
-    public void setNr_karta_kredytowa(String nr_karta_kredytowa) {
-        this.nr_karta_kredytowa = nr_karta_kredytowa;
+    public void setnrKartaKredytowa(String nrKartaKredytowa) {
+        this.nrKartaKredytowa = nrKartaKredytowa;
     }
 
     public List<Komputer> getKomputer() {

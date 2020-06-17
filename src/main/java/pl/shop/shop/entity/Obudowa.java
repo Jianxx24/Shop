@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,28 +10,32 @@ import java.util.List;
 @Table(name="obudowa")
 public class Obudowa {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long obudowa_id;
+    @SequenceGenerator(name = "case_sequence", initialValue = 15)
+    @GeneratedValue(generator = "case_sequence")
+    private long obudowaId;
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
     private String kolor;
-    private String typ_ksztaltu; // ATX, microATX
-    private float max_dlugosc_grafiki; // tu też trzeba uważać xd np 280.3mm
-    private int sloty_2_5_cala;
-    private int sloty_3_5_cala;
+    private String typKsztaltu; // ATX, microATX
+    private float maxDlugoscGrafiki; // tu też trzeba uważać xd np 280.3mm
+    @Column(name="sloty_25")
+    private int sloty25Cala;
+    @Column(name="sloty_35")
+    private int sloty35Cala;
 
     private float cena;
+    @JsonIgnore
     @OneToMany (mappedBy = "obudowa" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getObudowa_id() {
-        return obudowa_id;
+    public long getObudowaId() {
+        return obudowaId;
     }
 
-    public void setObudowa_id(long obudowa_id) {
-        this.obudowa_id = obudowa_id;
+    public void setObudowaId(long obudowaId) {
+        this.obudowaId = obudowaId;
     }
 
     public String getObrazek() {
@@ -65,36 +70,36 @@ public class Obudowa {
         this.kolor = kolor;
     }
 
-    public String getTyp_ksztaltu() {
-        return typ_ksztaltu;
+    public String getTypKsztaltu() {
+        return typKsztaltu;
     }
 
-    public void setTyp_ksztaltu(String typ_ksztaltu) {
-        this.typ_ksztaltu = typ_ksztaltu;
+    public void setTypKsztaltu(String typKsztaltu) {
+        this.typKsztaltu = typKsztaltu;
     }
 
-    public float getMax_dlugosc_grafiki() {
-        return max_dlugosc_grafiki;
+    public float getMaxDlugoscGrafiki() {
+        return maxDlugoscGrafiki;
     }
 
-    public void setMax_dlugosc_grafiki(float max_dlugosc_grafiki) {
-        this.max_dlugosc_grafiki = max_dlugosc_grafiki;
+    public void setMaxDlugoscGrafiki(float maxDlugoscGrafiki) {
+        this.maxDlugoscGrafiki = maxDlugoscGrafiki;
     }
 
-    public int getSloty_2_5_cala() {
-        return sloty_2_5_cala;
+    public int getSloty25Cala() {
+        return sloty25Cala;
     }
 
-    public void setSloty_2_5_cala(int sloty_2_5_cala) {
-        this.sloty_2_5_cala = sloty_2_5_cala;
+    public void setSloty25Cala(int sloty25Cala) {
+        this.sloty25Cala = sloty25Cala;
     }
 
-    public int getSloty_3_5_cala() {
-        return sloty_3_5_cala;
+    public int getSloty35Cala() {
+        return sloty35Cala;
     }
 
-    public void setSloty_3_5_cala(int sloty_3_5_cala) {
-        this.sloty_3_5_cala = sloty_3_5_cala;
+    public void setSloty35Cala(int sloty35Cala) {
+        this.sloty35Cala = sloty35Cala;
     }
 
     public float getCena() {
@@ -104,11 +109,11 @@ public class Obudowa {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }

@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,30 +10,32 @@ import java.util.List;
 @Table(name="ram")
 public class RAM {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long ram_id;
+    @SequenceGenerator(name = "ram_sequence", initialValue = 15)
+    @GeneratedValue(generator = "ram_sequence")
+    private long ramId;
     private String obrazek; // sciezka do obrazku
     private String nazwa;
     private String producent;
-    private int rozmiar_pamieci; //np 16GB
+    private int rozmiarPamieci; //np 16GB
     private int taktowanie; //np 3200
-    private String typ_pamieci; //np DDR4
+    private String typPamieci; //np DDR4
+    @Column(name="cas")
     private int CAS;
     private float napiecie;
     private String timingi;
 
     private float cena;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "ram")
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getRam_id() {
-        return ram_id;
+    public long getRamId() {
+        return ramId;
     }
 
-    public void setRam_id(long ram_id) {
-        this.ram_id = ram_id;
+    public void setRamId(long ramId) {
+        this.ramId = ramId;
     }
 
     public String getObrazek() {
@@ -59,12 +62,12 @@ public class RAM {
         this.producent = producent;
     }
 
-    public int getRozmiar_pamieci() {
-        return rozmiar_pamieci;
+    public int getRozmiarPamieci() {
+        return rozmiarPamieci;
     }
 
-    public void setRozmiar_pamieci(int rozmiar_pamieci) {
-        this.rozmiar_pamieci = rozmiar_pamieci;
+    public void setRozmiarPamieci(int rozmiarPamieci) {
+        this.rozmiarPamieci = rozmiarPamieci;
     }
 
     public int getTaktowanie() {
@@ -75,12 +78,12 @@ public class RAM {
         this.taktowanie = taktowanie;
     }
 
-    public String getTyp_pamieci() {
-        return typ_pamieci;
+    public String getTypPamieci() {
+        return typPamieci;
     }
 
-    public void setTyp_pamieci(String typ_pamieci) {
-        this.typ_pamieci = typ_pamieci;
+    public void setTypPamieci(String typPamieci) {
+        this.typPamieci = typPamieci;
     }
 
     public int getCAS() {
@@ -114,11 +117,11 @@ public class RAM {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }

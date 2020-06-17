@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,30 +10,32 @@ import java.util.List;
 @Table(name="dysk")
 public class Dysk {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long dysk_id;
+    @SequenceGenerator(name = "dysk_sequence", initialValue = 15)
+    @GeneratedValue(generator = "dysk_sequence")
+    private long dyskId;
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
-    private float pojemnosc; // 2tb
+    private int pojemnosc; // 2tb
     private String typ; //7200rpm lub SSD
     private int cache; // w mb
-    private String wspolczynnik_ksztaltu; // np. 3.5 cala join z obudową
+    private String wspolczynnikKsztaltu; // np. 3.5 cala join z obudową
     private String interfejs; // np SATA 6Gb, albo mSata join z plytą główną
 
 
 
     private float cena;
+    @JsonIgnore
     @OneToMany (mappedBy = "dysk" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getDysk_id() {
-        return dysk_id;
+    public long getDyskId() {
+        return dyskId;
     }
 
-    public void setDysk_id(long dysk_id) {
-        this.dysk_id = dysk_id;
+    public void setDyskId(long dyskId) {
+        this.dyskId = dyskId;
     }
 
     public String getObrazek() {
@@ -63,7 +66,7 @@ public class Dysk {
         return pojemnosc;
     }
 
-    public void setPojemnosc(float pojemnosc) {
+    public void setPojemnosc(int pojemnosc) {
         this.pojemnosc = pojemnosc;
     }
 
@@ -83,12 +86,12 @@ public class Dysk {
         this.cache = cache;
     }
 
-    public String getWspolczynnik_ksztaltu() {
-        return wspolczynnik_ksztaltu;
+    public String getWspolczynnikKsztaltu() {
+        return wspolczynnikKsztaltu;
     }
 
-    public void setWspolczynnik_ksztaltu(String wspolczynnik_ksztaltu) {
-        this.wspolczynnik_ksztaltu = wspolczynnik_ksztaltu;
+    public void setWspolczynnikKsztaltu(String wspolczynnikKsztaltu) {
+        this.wspolczynnikKsztaltu = wspolczynnikKsztaltu;
     }
 
     public String getInterfejs() {
@@ -106,11 +109,11 @@ public class Dysk {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }

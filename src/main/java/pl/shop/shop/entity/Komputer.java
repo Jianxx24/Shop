@@ -1,5 +1,7 @@
 package pl.shop.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,22 +9,27 @@ import java.util.List;
 @Table(name="komputer")
 public class Komputer {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long komputer_id;
+    @SequenceGenerator(name = "komputer_sequence", initialValue = 3)
+    @GeneratedValue(generator = "komputer_sequence")
+    private long komputerId;
     private boolean zlozone; // czy wszystkie czesci sa, jak tak to mozna dodac do koszyka
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name ="klient_id")
     private Klient klient;
 
     @ManyToOne
     @JoinColumn(name ="koszyk_id", nullable = true)
     private Koszyk koszyk;
+    @ManyToOne
+    @JoinColumn(name="zamowienie_id", nullable = true)
+    private Zamowienie zamowienie;
 
 
     @ManyToOne
     @JoinColumn(name ="plyta_glowna_id", nullable = true)
-    private Plyta_Glowna plyta_glowna;
+    private PlytaGlowna plytaGlowna;
 
     @ManyToOne
     @JoinColumn(name ="procesor_id", nullable = true)
@@ -32,8 +39,8 @@ public class Komputer {
     @ManyToMany
     @JoinTable(
             name = "komputer_ram",
-            joinColumns = @JoinColumn(name = "komputer_id"),
-            inverseJoinColumns = @JoinColumn(name = "ram_id")
+            joinColumns = @JoinColumn(name = "komputerId"),
+            inverseJoinColumns = @JoinColumn(name = "ramId")
     )
     private List<RAM> ram;
 
@@ -47,22 +54,45 @@ public class Komputer {
 
     @ManyToOne
     @JoinColumn(name ="karta_graficzna_id", nullable = true)
-    private Karta_Graficzna karta_graficzna;
+    private KartaGraficzna kartaGraficzna;
 
     @ManyToOne
     @JoinColumn(name ="naped_optyczny_id", nullable = true)
-    private Naped_Optyczny naped_optyczny;
+    private NapedOptyczny napedOptyczny;
 
     @ManyToOne
     @JoinColumn(name ="obudowa_id", nullable = true)
     private Obudowa obudowa;
 
-    public long getKomputer_id() {
-        return komputer_id;
+    private float cena=0;
+
+    public void obliczCene(){
+        cena=0;
+        for (int i=0; i<ram.size(); i++){
+            if(ram.get(i) != null) {
+                cena += ram.get(i).getCena();
+            }
+
+        }
+        if(plytaGlowna != null) cena+=plytaGlowna.getCena();
+        if(procesor != null) cena+=procesor.getCena();
+        if(zasilacz != null) cena+=zasilacz.getCena();
+        if(dysk != null) cena+=dysk.getCena();
+        if(kartaGraficzna != null) cena+=kartaGraficzna.getCena();
+        if(napedOptyczny != null) cena+=napedOptyczny.getCena();
+        if(obudowa != null) cena+=obudowa.getCena();
+
+
     }
 
-    public void setKomputer_id(long komputer_id) {
-        this.komputer_id = komputer_id;
+
+
+    public long getKomputerId() {
+        return komputerId;
+    }
+
+    public void setKomputerId(long komputerId) {
+        this.komputerId = komputerId;
     }
 
     public boolean isZlozone() {
@@ -89,12 +119,12 @@ public class Komputer {
         this.koszyk = koszyk;
     }
 
-    public Plyta_Glowna getPlyta_glowna() {
-        return plyta_glowna;
+    public PlytaGlowna getPlytaGlowna() {
+        return plytaGlowna;
     }
 
-    public void setPlyta_glowna(Plyta_Glowna plyta_glowna) {
-        this.plyta_glowna = plyta_glowna;
+    public void setPlytaGlowna(PlytaGlowna plytaGlowna) {
+        this.plytaGlowna = plytaGlowna;
     }
 
     public Procesor getProcesor() {
@@ -129,20 +159,20 @@ public class Komputer {
         this.dysk = dysk;
     }
 
-    public Karta_Graficzna getKarta_graficzna() {
-        return karta_graficzna;
+    public KartaGraficzna getKartaGraficzna() {
+        return kartaGraficzna;
     }
 
-    public void setKarta_graficzna(Karta_Graficzna karta_graficzna) {
-        this.karta_graficzna = karta_graficzna;
+    public void setKartaGraficzna(KartaGraficzna kartaGraficzna) {
+        this.kartaGraficzna = kartaGraficzna;
     }
 
-    public Naped_Optyczny getNaped_optyczny() {
-        return naped_optyczny;
+    public NapedOptyczny getNapedOptyczny() {
+        return napedOptyczny;
     }
 
-    public void setNaped_optyczny(Naped_Optyczny naped_optyczny) {
-        this.naped_optyczny = naped_optyczny;
+    public void setNapedOptyczny(NapedOptyczny napedOptyczny) {
+        this.napedOptyczny = napedOptyczny;
     }
 
     public Obudowa getObudowa() {
@@ -151,5 +181,21 @@ public class Komputer {
 
     public void setObudowa(Obudowa obudowa) {
         this.obudowa = obudowa;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public void setCena(float cena) {
+        this.cena = cena;
+    }
+
+    public Zamowienie getZamowienie() {
+        return zamowienie;
+    }
+
+    public void setZamowienie(Zamowienie zamowienie) {
+        this.zamowienie = zamowienie;
     }
 }

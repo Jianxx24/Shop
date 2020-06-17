@@ -1,6 +1,7 @@
 package pl.shop.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,30 +10,35 @@ import java.util.List;
 @Table(name="zasilacz")
 public class Zasilacz {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long zasilacz_id;
+    @SequenceGenerator(name = "psu_sequence", initialValue = 15)
+    @GeneratedValue(generator = "psu_sequence")
+    private long zasilaczId;
     private String obrazek; // sciezka do obrazku
     private String producent;
     private String nazwa;
-    private String typ_ksztaltu;
+    private String typKsztaltu;
     private int moc; // musi być większe niż grafika + procesor
-    private int zlacza_eps;
-    private int zlacza_pcie6_plus_2;
-    private int zlacza_SATA;
-    private int zlacza_molex_4_pin;
+    @Column(name="eps")
+    private int zlaczaEps;
+    @Column(name="pcie_plus")
+    private int zlaczaPcie6Plus2;
+    @Column(name="sata")
+    private int zlaczaSata;
+    @Column(name="molex")
+    private int zlaczaMolex4Pin;
 
     private float cena;
-
+    @JsonIgnore
     @OneToMany (mappedBy = "zasilacz" , fetch = FetchType.LAZY , cascade = CascadeType.ALL )
     @JsonBackReference
     private List<Komputer> komputer;
 
-    public long getZasilacz_id() {
-        return zasilacz_id;
+    public long getZasilaczId() {
+        return zasilaczId;
     }
 
-    public void setZasilacz_id(long zasilacz_id) {
-        this.zasilacz_id = zasilacz_id;
+    public void setZasilaczId(long zasilaczId) {
+        this.zasilaczId = zasilaczId;
     }
 
     public String getObrazek() {
@@ -59,12 +65,12 @@ public class Zasilacz {
         this.nazwa = nazwa;
     }
 
-    public String getTyp_ksztaltu() {
-        return typ_ksztaltu;
+    public String getTypKsztaltu() {
+        return typKsztaltu;
     }
 
-    public void setTyp_ksztaltu(String typ_ksztaltu) {
-        this.typ_ksztaltu = typ_ksztaltu;
+    public void setTypKsztaltu(String typKsztaltu) {
+        this.typKsztaltu = typKsztaltu;
     }
 
     public int getMoc() {
@@ -75,36 +81,36 @@ public class Zasilacz {
         this.moc = moc;
     }
 
-    public int getZlacza_eps() {
-        return zlacza_eps;
+    public int getZlaczaEps() {
+        return zlaczaEps;
     }
 
-    public void setZlacza_eps(int zlacza_eps) {
-        this.zlacza_eps = zlacza_eps;
+    public void setZlaczaEps(int zlaczaEps) {
+        this.zlaczaEps = zlaczaEps;
     }
 
-    public int getZlacza_pcie6_plus_2() {
-        return zlacza_pcie6_plus_2;
+    public int getZlaczaPcie6Plus2() {
+        return zlaczaPcie6Plus2;
     }
 
-    public void setZlacza_pcie6_plus_2(int zlacza_pcie6_plus_2) {
-        this.zlacza_pcie6_plus_2 = zlacza_pcie6_plus_2;
+    public void setZlaczaPcie6Plus2(int zlaczaPcie6Plus2) {
+        this.zlaczaPcie6Plus2 = zlaczaPcie6Plus2;
     }
 
-    public int getZlacza_SATA() {
-        return zlacza_SATA;
+    public int getZlaczaSata() {
+        return zlaczaSata;
     }
 
-    public void setZlacza_SATA(int zlacza_SATA) {
-        this.zlacza_SATA = zlacza_SATA;
+    public void setZlaczaSata(int zlaczaSata) {
+        this.zlaczaSata = zlaczaSata;
     }
 
-    public int getZlacza_molex_4_pin() {
-        return zlacza_molex_4_pin;
+    public int getZlaczaMolex4Pin() {
+        return zlaczaMolex4Pin;
     }
 
-    public void setZlacza_molex_4_pin(int zlacza_molex_4_pin) {
-        this.zlacza_molex_4_pin = zlacza_molex_4_pin;
+    public void setZlaczaMolex4Pin(int zlaczaMolex4Pin) {
+        this.zlaczaMolex4Pin = zlaczaMolex4Pin;
     }
 
     public float getCena() {
@@ -114,11 +120,11 @@ public class Zasilacz {
     public void setCena(float cena) {
         this.cena = cena;
     }
-
+    @JsonIgnore
     public List<Komputer> getKomputer() {
         return komputer;
     }
-
+    @JsonIgnore
     public void setKomputer(List<Komputer> komputer) {
         this.komputer = komputer;
     }
